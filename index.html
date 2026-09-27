@@ -10,17 +10,34 @@
     <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Planning" />
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Young+Serif&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div id="intro" class="intro" aria-hidden="true">
+      <svg class="intro-logo" viewBox="0 0 120 120">
+        <rect class="il-fond" width="120" height="120" rx="28" />
+        <circle class="il-cercle" cx="60" cy="60" r="35" />
+        <polyline class="il-coche" points="45,61 56,72 76,49" />
+        <circle class="il-point" cx="87" cy="34" r="8" />
+      </svg>
+      <p class="intro-phrase">
+        <span>Un petit pas maintenant,</span>
+        <span>un grand futur demain.</span>
+      </p>
+    </div>
     <!-- ===== Alerte discrète à l'heure d'une tâche ===== -->
     <div id="alert-overlay" class="toast" role="status" hidden>
       <div class="toast-cat" id="alert-cat"></div>
       <p class="toast-title" id="alert-title"></p>
       <p class="toast-tip" id="alert-tip"></p>
       <div class="toast-actions">
-        <button class="btn btn-toast-ghost" id="btn-alert-later">Plus tard</button>
+        <button class="btn btn-toast-ghost" id="btn-alert-later">
+          Plus tard
+        </button>
         <button class="btn btn-toast" id="btn-alert-2min">Juste 2 min</button>
         <button class="btn btn-toast" id="btn-alert-focus">Focus</button>
       </div>
@@ -38,14 +55,29 @@
 
     <!-- ===== Mode focus (minuteur) ===== -->
     <div id="focus-sheet" class="sheet" hidden>
-      <div class="sheet-card" role="dialog" aria-modal="true" aria-labelledby="focus-task">
-        <button class="icon-btn sheet-close" id="focus-close" aria-label="Réduire"></button>
+      <div
+        class="sheet-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="focus-task"
+      >
+        <button
+          class="icon-btn sheet-close"
+          id="focus-close"
+          aria-label="Réduire"
+        ></button>
         <div class="eyebrow" id="focus-mode">Mode focus</div>
         <h2 id="focus-task">Session libre</h2>
         <div class="ring-wrap">
           <svg class="ring" viewBox="0 0 120 120" aria-hidden="true">
             <circle class="ring-bg" cx="60" cy="60" r="52"></circle>
-            <circle class="ring-fg" id="focus-ring" cx="60" cy="60" r="52"></circle>
+            <circle
+              class="ring-fg"
+              id="focus-ring"
+              cx="60"
+              cy="60"
+              r="52"
+            ></circle>
           </svg>
           <div class="ring-center">
             <div class="ring-time" id="focus-time">25:00</div>
@@ -72,18 +104,34 @@
             <div class="eyebrow" id="hero-date"></div>
             <h1>Salut Zinou</h1>
           </div>
-          <div class="streak-chip" id="streak-chip" title="Jours d'affilée avec ton Top 3 terminé"></div>
+          <div
+            class="streak-chip"
+            id="streak-chip"
+            title="Jours d'affilée avec ton Top 3 terminé"
+          ></div>
         </div>
         <div class="stats">
           <div class="stat"><b id="clock">--:--</b><span>Maintenant</span></div>
-          <div class="stat"><b id="next-time">--:--</b><span id="next-title">Prochaine</span></div>
-          <div class="stat"><b id="remaining-count">0</b><span>Restantes</span></div>
+          <div class="stat">
+            <b id="next-time">--:--</b><span id="next-title">Prochaine</span>
+          </div>
+          <div class="stat">
+            <b id="remaining-count">0</b><span>Restantes</span>
+          </div>
         </div>
         <div class="now-badge" id="now-badge"></div>
         <div class="week">
-          <button class="icon-btn" id="week-prev" aria-label="Semaine précédente"></button>
+          <button
+            class="icon-btn"
+            id="week-prev"
+            aria-label="Semaine précédente"
+          ></button>
           <div class="week-days" id="week-days"></div>
-          <button class="icon-btn" id="week-next" aria-label="Semaine suivante"></button>
+          <button
+            class="icon-btn"
+            id="week-next"
+            aria-label="Semaine suivante"
+          ></button>
         </div>
       </header>
 
@@ -113,10 +161,20 @@
 
           <div class="card form-card" id="planning-form" hidden>
             <div class="section-label" id="form-title">Nouvelle tâche</div>
-            <input type="text" id="planning-title" data-fk="planning-title" placeholder="Titre (ex : Séance muscu)" maxlength="80" />
+            <input
+              type="text"
+              id="planning-title"
+              data-fk="planning-title"
+              placeholder="Titre (ex : Séance muscu)"
+              maxlength="80"
+            />
             <div class="form-row">
-              <label class="field"><span>Début</span><input type="time" id="planning-time" /></label>
-              <label class="field"><span>Fin</span><input type="time" id="planning-end" /></label>
+              <label class="field"
+                ><span>Début</span><input type="time" id="planning-time"
+              /></label>
+              <label class="field"
+                ><span>Fin</span><input type="time" id="planning-end"
+              /></label>
             </div>
             <select id="planning-category">
               <option value="sport">Sport</option>
@@ -130,11 +188,19 @@
               <div class="days-picker" id="repeat-days"></div>
               <span class="hint" id="repeat-hint"></span>
             </div>
-            <textarea id="planning-notes" placeholder="Notes (optionnel)" maxlength="400"></textarea>
+            <textarea
+              id="planning-notes"
+              placeholder="Notes (optionnel)"
+              maxlength="400"
+            ></textarea>
             <p class="form-error" id="planning-error"></p>
             <div class="form-actions">
-              <button class="btn btn-ghost" id="btn-cancel-planning">Annuler</button>
-              <button class="btn btn-primary" id="btn-add-planning">Ajouter</button>
+              <button class="btn btn-ghost" id="btn-cancel-planning">
+                Annuler
+              </button>
+              <button class="btn btn-primary" id="btn-add-planning">
+                Ajouter
+              </button>
             </div>
           </div>
 
@@ -146,13 +212,21 @@
           <div class="card form-card">
             <div class="section-label">Nouvelle tâche à faire</div>
             <div class="form-row">
-              <input type="text" id="todo-input" data-fk="todo-input" placeholder="Ex : Faire la vaisselle" maxlength="80" />
+              <input
+                type="text"
+                id="todo-input"
+                data-fk="todo-input"
+                placeholder="Ex : Faire la vaisselle"
+                maxlength="80"
+              />
               <button class="btn btn-primary" id="btn-add-todo">Ajouter</button>
             </div>
           </div>
 
           <div class="progress-row">
-            <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+            <div class="progress-track">
+              <div class="progress-fill" id="progress-fill"></div>
+            </div>
             <div class="progress-num" id="progress-num">0 / 0</div>
           </div>
           <div class="todo" id="todo-list"></div>
@@ -182,16 +256,30 @@
           </div>
 
           <div class="card journal">
-            <div class="card-head"><div class="card-title">Mon retour du jour</div></div>
-            <label class="field"><span>Ce qui a bien marché</span>
-              <textarea id="journal-bien" placeholder="Ex : j'ai fait ma séance malgré la flemme" maxlength="600"></textarea>
+            <div class="card-head">
+              <div class="card-title">Mon retour du jour</div>
+            </div>
+            <label class="field"
+              ><span>Ce qui a bien marché</span>
+              <textarea
+                id="journal-bien"
+                placeholder="Ex : j'ai fait ma séance malgré la flemme"
+                maxlength="600"
+              ></textarea>
             </label>
-            <label class="field"><span>Ce que je change demain</span>
-              <textarea id="journal-change" placeholder="Ex : poser le téléphone dans une autre pièce" maxlength="600"></textarea>
+            <label class="field"
+              ><span>Ce que je change demain</span>
+              <textarea
+                id="journal-change"
+                placeholder="Ex : poser le téléphone dans une autre pièce"
+                maxlength="600"
+              ></textarea>
             </label>
           </div>
 
-          <button class="btn btn-primary btn-block" id="btn-demain">Préparer demain</button>
+          <button class="btn btn-primary btn-block" id="btn-demain">
+            Préparer demain
+          </button>
         </section>
       </main>
 
