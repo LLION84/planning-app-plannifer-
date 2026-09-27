@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Planning Zinou</title>
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#33415C" />
+    <link rel="icon" href="icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Planning" />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ===== Alerte discrète à l'heure d'une tâche ===== -->
+    <div id="alert-overlay" class="toast" role="status" hidden>
+      <div class="toast-cat" id="alert-cat"></div>
+      <p class="toast-title" id="alert-title"></p>
+      <p class="toast-tip" id="alert-tip"></p>
+      <div class="toast-actions">
+        <button class="btn btn-toast-ghost" id="btn-alert-later">Plus tard</button>
+        <button class="btn btn-toast" id="btn-alert-2min">Juste 2 min</button>
+        <button class="btn btn-toast" id="btn-alert-focus">Focus</button>
+      </div>
+    </div>
+
+    <!-- ===== Petit message temporaire ===== -->
+    <div id="snack" class="snack" role="status" hidden></div>
+
+    <!-- ===== Pastille du focus en cours (quand la fenêtre est fermée) ===== -->
+    <button id="focus-pill" class="focus-pill" hidden>
+      <span class="pill-dot"></span>
+      <span id="focus-pill-time">25:00</span>
+      <span id="focus-pill-title" class="pill-title"></span>
+    </button>
+
+    <!-- ===== Mode focus (minuteur) ===== -->
+    <div id="focus-sheet" class="sheet" hidden>
+      <div class="sheet-card" role="dialog" aria-modal="true" aria-labelledby="focus-task">
+        <button class="icon-btn sheet-close" id="focus-close" aria-label="Réduire"></button>
+        <div class="eyebrow" id="focus-mode">Mode focus</div>
+        <h2 id="focus-task">Session libre</h2>
+        <div class="ring-wrap">
+          <svg class="ring" viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="ring-bg" cx="60" cy="60" r="52"></circle>
+            <circle class="ring-fg" id="focus-ring" cx="60" cy="60" r="52"></circle>
+          </svg>
+          <div class="ring-center">
+            <div class="ring-time" id="focus-time">25:00</div>
+            <div class="ring-state" id="focus-state">Prêt</div>
+          </div>
+        </div>
+        <div class="durations" id="focus-durations">
+          <button class="dur" data-min="2">2 min</button>
+          <button class="dur" data-min="15">15</button>
+          <button class="dur" data-min="25">25</button>
+          <button class="dur" data-min="45">45</button>
+          <button class="dur" data-min="60">60</button>
+        </div>
+        <p class="focus-msg" id="focus-msg"></p>
+        <div class="sheet-actions" id="focus-actions"></div>
+      </div>
+    </div>
+
+    <div class="app">
+      <!-- ===== En-tête ===== -->
+      <header class="hero">
+        <div class="hero-top">
+          <div>
+            <div class="eyebrow" id="hero-date"></div>
+            <h1>Salut Zinou</h1>
+          </div>
+          <div class="streak-chip" id="streak-chip" title="Jours d'affilée avec ton Top 3 terminé"></div>
+        </div>
+        <div class="stats">
+          <div class="stat"><b id="clock">--:--</b><span>Maintenant</span></div>
+          <div class="stat"><b id="next-time">--:--</b><span id="next-title">Prochaine</span></div>
+          <div class="stat"><b id="remaining-count">0</b><span>Restantes</span></div>
+        </div>
+        <div class="now-badge" id="now-badge"></div>
+        <div class="week">
+          <button class="icon-btn" id="week-prev" aria-label="Semaine précédente"></button>
+          <div class="week-days" id="week-days"></div>
+          <button class="icon-btn" id="week-next" aria-label="Semaine suivante"></button>
+        </div>
+      </header>
+
+      <!-- ===== Top 3 du jour ===== -->
+      <section class="card top3" id="top3">
+        <div class="card-head">
+          <div class="card-title">Top 3 du jour</div>
+          <div class="card-meta" id="top3-meta"></div>
+        </div>
+        <div class="top3-list" id="top3-list"></div>
+      </section>
+
+      <!-- ===== Onglets ===== -->
+      <nav class="tabs">
+        <button class="tab active" data-tab="planning">Planning</button>
+        <button class="tab" data-tab="todo">À faire</button>
+        <button class="tab" data-tab="bilan">Bilan</button>
+      </nav>
+
+      <main class="panels">
+        <!-- ===== Onglet Planning ===== -->
+        <section class="panel active" id="panel-planning">
+          <div class="section-head">
+            <div class="section-label" id="planning-label">Ta journée</div>
+            <button class="btn btn-soft" id="btn-open-form"></button>
+          </div>
+
+          <div class="card form-card" id="planning-form" hidden>
+            <div class="section-label" id="form-title">Nouvelle tâche</div>
+            <input type="text" id="planning-title" data-fk="planning-title" placeholder="Titre (ex : Séance muscu)" maxlength="80" />
+            <div class="form-row">
+              <label class="field"><span>Début</span><input type="time" id="planning-time" /></label>
+              <label class="field"><span>Fin</span><input type="time" id="planning-end" /></label>
+            </div>
+            <select id="planning-category">
+              <option value="sport">Sport</option>
+              <option value="etudes">Études</option>
+              <option value="menage">Ménage / Maison</option>
+              <option value="admin">Admin / Vie perso</option>
+              <option value="pro">Vie pro</option>
+            </select>
+            <div class="field">
+              <span>Répéter</span>
+              <div class="days-picker" id="repeat-days"></div>
+              <span class="hint" id="repeat-hint"></span>
+            </div>
+            <textarea id="planning-notes" placeholder="Notes (optionnel)" maxlength="400"></textarea>
+            <p class="form-error" id="planning-error"></p>
+            <div class="form-actions">
+              <button class="btn btn-ghost" id="btn-cancel-planning">Annuler</button>
+              <button class="btn btn-primary" id="btn-add-planning">Ajouter</button>
+            </div>
+          </div>
+
+          <div class="timeline" id="planning-list"></div>
+        </section>
+
+        <!-- ===== Onglet À faire ===== -->
+        <section class="panel" id="panel-todo">
+          <div class="card form-card">
+            <div class="section-label">Nouvelle tâche à faire</div>
+            <div class="form-row">
+              <input type="text" id="todo-input" data-fk="todo-input" placeholder="Ex : Faire la vaisselle" maxlength="80" />
+              <button class="btn btn-primary" id="btn-add-todo">Ajouter</button>
+            </div>
+          </div>
+
+          <div class="progress-row">
+            <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+            <div class="progress-num" id="progress-num">0 / 0</div>
+          </div>
+          <div class="todo" id="todo-list"></div>
+        </section>
+
+        <!-- ===== Onglet Bilan ===== -->
+        <section class="panel" id="panel-bilan">
+          <div class="card streak-card">
+            <div class="streak-num" id="streak-num">0</div>
+            <div class="streak-body">
+              <div class="streak-label" id="streak-label"></div>
+              <div class="streak-record" id="streak-record"></div>
+              <div class="streak-dots" id="streak-dots"></div>
+            </div>
+          </div>
+
+          <div class="section-label" id="bilan-label">Bilan</div>
+          <div class="tiles" id="bilan-tiles"></div>
+
+          <div class="card">
+            <div class="card-head">
+              <div class="card-title">Focus sur 7 jours</div>
+              <div class="card-meta" id="bars-meta"></div>
+            </div>
+            <div class="bars" id="focus-bars"></div>
+            <div class="bar-labels" id="bar-labels"></div>
+          </div>
+
+          <div class="card journal">
+            <div class="card-head"><div class="card-title">Mon retour du jour</div></div>
+            <label class="field"><span>Ce qui a bien marché</span>
+              <textarea id="journal-bien" placeholder="Ex : j'ai fait ma séance malgré la flemme" maxlength="600"></textarea>
+            </label>
+            <label class="field"><span>Ce que je change demain</span>
+              <textarea id="journal-change" placeholder="Ex : poser le téléphone dans une autre pièce" maxlength="600"></textarea>
+            </label>
+          </div>
+
+          <button class="btn btn-primary btn-block" id="btn-demain">Préparer demain</button>
+        </section>
+      </main>
+
+      <footer class="sync-note" id="sync-note"></footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
