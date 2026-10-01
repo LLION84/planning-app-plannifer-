@@ -12,168 +12,6 @@
     pro: { label: "Vie pro" },
   };
 
-  const CONSEILS = {
-    sport: [
-      "Bois de l'eau avant, pendant et après ta séance.",
-      "Échauffe-toi 5 minutes avant l'effort intense pour éviter les blessures.",
-      "Étire-toi après chaque série pour préserver ta souplesse.",
-      "Respire profondément entre les répétitions pour mieux récupérer.",
-      "Dors au moins 7h la nuit qui suit un entraînement intense, c'est là que le muscle se répare.",
-      "Mange une source de protéines dans l'heure qui suit ta séance.",
-      "Ne saute pas les jours de repos, ils font partie du programme.",
-      "Varie les exercices de temps en temps pour ne pas stagner.",
-      "Concentre-toi sur la qualité du mouvement plutôt que sur le poids soulevé.",
-      "Note tes performances pour voir ta progression dans le temps.",
-      "Une douleur vive n'est jamais normale, écoute ton corps.",
-      'Fixe-toi un objectif précis pour cette séance, pas juste "faire du sport".',
-      "Chauffe bien les articulations sollicitées avant les charges lourdes.",
-      "Garde le dos droit et le gainage actif pendant l'effort.",
-      "Une séance courte mais régulière vaut mieux qu'une longue par mois.",
-      "Range ton téléphone pendant la séance, la concentration en dépend.",
-      "Limite la caféine après 16h si tu t'entraînes le soir, ça perturbe le sommeil.",
-      "Compare ta séance d'aujourd'hui seulement à celle d'hier, pas à celle des autres.",
-      "Termine par un retour au calme pour faire redescendre le rythme cardiaque.",
-      "Prépare ton sac et tes affaires la veille, ça enlève une excuse de plus.",
-      "Mets des chaussures adaptées à ton activité pour éviter les blessures.",
-      "Hydrate-toi tout au long de la journée, pas seulement pendant l'effort.",
-      "Ajuste la charge ou l'intensité si tu sens une fatigue anormale.",
-      "Fixe-toi des objectifs progressifs plutôt qu'un objectif final trop loin.",
-      "Un carnet d'entraînement aide à voir tes progrès sur plusieurs semaines.",
-      "Mange léger avant l'effort pour éviter l'inconfort digestif.",
-      "Respecte au moins 48h de repos pour un même groupe musculaire.",
-      "La régularité compte plus que l'intensité d'une seule séance.",
-      "Prépare ta tenue de sport la veille pour réduire les excuses du matin.",
-      "Célèbre chaque séance faite, même courte : c'est une victoire sur la procrastination.",
-    ],
-    etudes: [
-      "Coupe les notifications du téléphone avant de commencer.",
-      "Utilise la technique Pomodoro : 25 minutes de travail, 5 de pause.",
-      "Reformule ce que tu apprends avec tes propres mots, ça ancre mieux la mémoire.",
-      "Teste-toi régulièrement plutôt que de relire, la mémoire active est plus efficace.",
-      "Étale tes révisions dans le temps plutôt que de tout faire la veille.",
-      "Explique ce que t'as appris à voix haute, comme si tu l'enseignais à quelqu'un.",
-      "Travaille toujours au même endroit calme, ton cerveau associe le lieu à la concentration.",
-      "Bois de l'eau, la déshydratation réduit la concentration.",
-      "Dors suffisamment, c'est pendant le sommeil que les souvenirs se consolident.",
-      "Découpe une grosse tâche en petites étapes claires.",
-      "Élimine les distractions visuelles de ton bureau avant de commencer.",
-      "Change de matière toutes les heures pour garder l'attention fraîche.",
-      "Fais des fiches courtes plutôt que de recopier tout le cours.",
-      "Utilise des exemples concrets pour comprendre une notion abstraite.",
-      "Relie les nouvelles infos à des choses que tu connais déjà.",
-      "Prends une vraie pause (pas ton téléphone) pour reposer les yeux et le cerveau.",
-      "Fixe une durée précise avant de commencer, ça aide à démarrer.",
-      "Récite ce que t'as retenu sans regarder tes notes pour tester vraiment.",
-      "Travaille les sujets difficiles au moment où t'es le plus concentré.",
-      "Une bonne nuit de sommeil vaut mieux qu'une nuit blanche à réviser.",
-      "Prépare ton espace de travail avant de t'asseoir, ça évite les micro-interruptions.",
-      "Alterne les matières difficiles et faciles pour garder l'énergie mentale.",
-      "Utilise des couleurs ou des schémas pour visualiser les liens entre les idées.",
-      'Fixe-toi un petit objectif atteignable par session, pas juste "réviser".',
-      "Note tes questions en cours de route plutôt que de rester bloqué dessus.",
-      "Une session de 25 à 45 minutes bien concentrée vaut mieux que 3h dispersées.",
-      "Vérifie ta compréhension en essayant d'expliquer un concept sans tes notes.",
-      "Prends l'air quelques minutes entre deux sessions pour raviver l'attention.",
-      "Range ton téléphone dans une autre pièce pendant les phases importantes.",
-      "Relis tes erreurs passées, elles indiquent exactement quoi retravailler.",
-    ],
-    menage: [
-      "Mets une playlist ou un podcast, le temps passe plus vite.",
-      "Commence par la pièce qui te dérange le plus, tu seras soulagé plus vite.",
-      "Range d'abord, nettoie ensuite, c'est plus efficace.",
-      "Mets un minuteur de 15 minutes, tu seras surpris de ce que tu peux faire.",
-      "Un sac poubelle à portée de main pendant que tu ranges évite les allers-retours.",
-      "Fais un tour rapide de 5 minutes chaque soir pour éviter l'accumulation.",
-      "Aère la pièce pendant que tu nettoies.",
-      'Un objet, une décision : garder, ranger ou jeter, ne le repose pas "pour plus tard".',
-      "Nettoie de haut en bas, la poussière tombe.",
-      "Prépare tous tes produits avant de commencer pour ne pas t'interrompre.",
-      "Découpe la corvée en zones si t'as peu de temps, une pièce à la fois.",
-      "Prévois une petite pause après, ça motive à s'y remettre la fois d'après.",
-      'Garde un panier pour les objets "mal placés" que tu ranges à la fin.',
-      "Nettoie juste après usage (vaisselle, plan de travail), ça évite l'accumulation.",
-      "Change l'eau ou le produit dès qu'il est sale, tu nettoies pas avec de la saleté.",
-      "Utilise un panier par pièce pour trier ce qui doit être rangé ailleurs.",
-      "Fais tourner une lessive pendant que tu t'occupes d'autre chose.",
-      "Nettoie les surfaces juste après les avoir salies, c'est plus rapide.",
-      "Prévois un jour fixe dans la semaine pour le grand ménage, ça devient automatique.",
-      "Désencombre avant de nettoyer, il y a moins d'objets à contourner.",
-      "Utilise une checklist pour ne rien oublier dans les pièces moins visibles.",
-      "Change les draps une fois par semaine, ça prend 5 minutes et ça fait du bien.",
-      "Vide les poubelles avant qu'elles débordent, pas après.",
-      "Nettoie l'évier juste après la vaisselle pour garder la cuisine impeccable.",
-      "Un coin rangé donne envie de garder le reste rangé, commence petit.",
-      "Prépare un kit de nettoyage rapide, facile à attraper pour les corvées express.",
-      "Trie par catégorie (vêtements, papiers, objets) plutôt que pièce par pièce.",
-      "Programme un rappel pour les tâches qu'on oublie facilement (vitres, frigo).",
-      "Nettoie en partant de la pièce la plus utilisée vers la moins utilisée.",
-      "Ouvre une fenêtre en fin de ménage pour faire circuler l'air propre.",
-    ],
-    admin: [
-      "Prépare tous les documents nécessaires avant de commencer une démarche.",
-      "Note les numéros de dossier ou de référence au fur et à mesure.",
-      "Fais les démarches administratives tôt le matin, les lignes sont moins chargées.",
-      "Garde une copie (photo ou scan) de chaque document important.",
-      "Occupe-toi d'une seule démarche à la fois, ne mélange pas plusieurs dossiers.",
-      "Utilise un dossier dédié (physique ou numérique) pour ne rien perdre.",
-      "Note la date et l'interlocuteur à chaque appel ou échange important.",
-      "Prévois plus de temps que ce que tu penses, l'administratif traîne souvent.",
-      "Relis un document avant de l'envoyer, une erreur coûte du temps derrière.",
-      "Classe tes papiers au fur et à mesure plutôt qu'en gros tas plus tard.",
-      "Fixe un créneau fixe chaque semaine pour traiter l'administratif en bloc.",
-      "Scanne systématiquement les documents importants dès leur réception.",
-      "Utilise un tableau simple pour suivre l'état de chaque démarche en cours.",
-      "Note le délai de réponse annoncé pour savoir quand relancer.",
-      "Garde tes identifiants administratifs dans un endroit sûr et centralisé.",
-      "Traite les démarches urgentes en premier, le reste peut attendre une semaine.",
-      "Prépare une pièce d'identité et un justificatif à jour, souvent demandés.",
-      "Envoie tes documents importants en recommandé, tu gardes une preuve.",
-      "Note les horaires d'ouverture avant de te déplacer pour une démarche.",
-      "Fais une liste des démarches en attente pour ne pas en oublier une.",
-      "Relis un formulaire deux fois avant de le valider, une erreur ralentit tout.",
-      "Privilégie l'écrit (mail) au téléphone, tu gardes une trace de l'échange.",
-      "Anticipe les renouvellements (papiers, abonnements) avant l'échéance.",
-      "Regroupe les démarches similaires le même jour pour gagner du temps.",
-      "Demande un accusé de réception pour les démarches importantes.",
-      "Range tes documents administratifs par année pour t'y retrouver.",
-      "Prévois une petite récompense après une démarche pénible, ça aide à s'y mettre.",
-      "Prends en photo chaque document avant de l'envoyer ou de le poster.",
-      "Découpe une démarche complexe en petites étapes avec des cases à cocher.",
-      "Ne remets pas à demain une démarche qui prend moins de 10 minutes.",
-    ],
-    pro: [
-      "Fais la liste de tes 3 priorités du jour avant de commencer à travailler.",
-      "Traite les mails par blocs plutôt qu'en continu, ça évite les interruptions.",
-      "Ferme les onglets inutiles pendant une tâche qui demande de la concentration.",
-      "Prends une vraie pause déjeuner, loin de l'écran.",
-      "Prépare ce dont t'as besoin pour demain avant de finir ta journée.",
-      "Dis non à une nouvelle tâche si ton temps du jour est déjà plein.",
-      "Fais les tâches difficiles au moment où t'es le plus concentré dans la journée.",
-      "Note les idées qui te viennent en cours de tâche pour ne pas perdre le fil.",
-      "Prends 2 minutes pour relire un message important avant de l'envoyer.",
-      "Termine la journée en notant où tu t'es arrêté, ça facilite la reprise demain.",
-      "Bloque des créneaux dans ton agenda pour le travail profond, sans interruption.",
-      "Prépare ta liste du lendemain la veille au soir, tu démarres plus vite le matin.",
-      "Fais une seule chose à la fois, le multitâche ralentit la qualité globale.",
-      "Prends des notes de réunion structurées pour ne rien perdre après coup.",
-      "Vérifie tes priorités en fin de matinée, elles changent parfois vite.",
-      "Accorde-toi une vraie coupure entre deux tâches différentes.",
-      "Préviens tôt si un délai risque de ne pas être tenu.",
-      "Range ton espace de travail en fin de journée, tu commences mieux le lendemain.",
-      "Évite de répondre aux messages non urgents pendant une tâche importante.",
-      "Fixe une heure de fin de journée et respecte-la autant que possible.",
-      "Prépare l'ordre du jour avant une réunion, ça la rend plus efficace.",
-      "Découpe un gros projet en étapes avec des échéances intermédiaires.",
-      "Fais le point une fois par semaine sur ce qui avance et ce qui bloque.",
-      "Priorise ce qui a un impact réel plutôt que ce qui est juste urgent.",
-      "Documente tes méthodes de travail, ça t'évite de tout refaire de mémoire.",
-      "Demande de l'aide dès qu'un blocage dépasse 15 à 20 minutes.",
-      "Sépare clairement l'urgent de l'important mais non urgent.",
-      "Termine une tâche avant d'en commencer une autre quand c'est possible.",
-      "Note les décisions prises en réunion pour éviter les malentendus plus tard.",
-      "Célèbre les petites victoires du jour, pas seulement les grands objectifs.",
-    ],
-  };
   const JOURS = [
     "dimanche",
     "lundi",
@@ -185,6 +23,50 @@
   ];
   const JOURS_COURTS = ["dim", "lun", "mar", "mer", "jeu", "ven", "sam"];
   const JOURS_LETTRE = ["D", "L", "M", "M", "J", "V", "S"];
+  // Logos des tâches à faire : traits simples, couleurs de l'appli
+  const LOGOS = {
+    courses: {
+      nom: "Courses",
+      svg: '<path d="M3 4.5h2.2l2.3 10a1 1 0 0 0 1 .8h8.8a1 1 0 0 0 1-.8l1.5-6.7H6.4"/><circle cx="9.3" cy="19" r="1.3"/><circle cx="16.8" cy="19" r="1.3"/>',
+    },
+    appel: {
+      nom: "Appel",
+      svg: '<path d="M5.5 4h2.8l1.4 3.8-1.9 1.3a11 11 0 0 0 5.1 5.1l1.3-1.9 3.8 1.4v2.8a1.8 1.8 0 0 1-1.9 1.8A14.5 14.5 0 0 1 3.7 5.9 1.8 1.8 0 0 1 5.5 4z"/>',
+    },
+    maison: {
+      nom: "Maison",
+      svg: '<path d="M4 11 12 4.5l8 6.5"/><path d="M6 9.6V19.5h12V9.6"/><path d="M10 19.5v-5h4v5"/>',
+    },
+    lecture: {
+      nom: "Lecture",
+      svg: '<path d="M12 6.8C10 5.3 7.6 4.8 4 4.8v13c3.6 0 6 .5 8 2 2-1.5 4.4-2 8-2v-13c-3.6 0-6 .5-8 2z"/><path d="M12 6.8v13"/>',
+    },
+    ordi: {
+      nom: "Ordinateur",
+      svg: '<rect x="3.5" y="4.5" width="17" height="11.5" rx="2"/><path d="M12 16v3.5M8 19.5h8"/>',
+    },
+    papiers: {
+      nom: "Papiers",
+      svg: '<path d="M7.5 3.5h6.5l4.5 4.5v11.5a1 1 0 0 1-1 1h-10a1 1 0 0 1-1-1v-15a1 1 0 0 1 1-1z"/><path d="M14 3.5V8h4.5M9.5 12.5h5M9.5 16h5"/>',
+    },
+    argent: {
+      nom: "Argent",
+      svg: '<circle cx="12" cy="12" r="8.5"/><path d="M14.8 9.2a3.6 3.6 0 1 0 0 5.6M8 11h5.2M8 13.2h5.2"/>',
+    },
+    sante: {
+      nom: "Santé",
+      svg: '<path d="M12 19.5s-7.2-4.4-7.2-9.5A4 4 0 0 1 12 7.8 4 4 0 0 1 19.2 10c0 5.1-7.2 9.5-7.2 9.5z"/>',
+    },
+  };
+  function svgLogo(cle) {
+    const l = LOGOS[cle];
+    return l
+      ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+          l.svg +
+          "</svg>"
+      : "";
+  }
+
   const ORDRE_SEMAINE = [1, 2, 3, 4, 5, 6, 0]; // lundi -> dimanche
   const MOIS = [
     "janvier",
@@ -220,6 +102,12 @@
     minus:
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="6" y1="12" x2="18" y2="12"/></svg>',
     x: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>',
+    compteur:
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="6" y1="19" x2="6" y2="14"/><line x1="12" y1="19" x2="12" y2="9"/><line x1="18" y1="19" x2="18" y2="5"/></svg>',
+    cible:
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg>',
+    retour:
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>',
     spark:
       '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.9 6.1L20 10l-6.1 1.9L12 18l-1.9-6.1L4 10l6.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>',
   };
@@ -347,7 +235,11 @@
      3. ÉTAT DE L'APPLI
      ========================================================= */
   function etatVide() {
-    return { tasks: {}, todos: {}, meta: { top3: {}, focus: {}, journal: {} } };
+    return {
+      tasks: {},
+      todos: {},
+      meta: { top3: {}, focus: {}, journal: {}, faits: {} },
+    };
   }
 
   function normTache(t, i) {
@@ -372,6 +264,10 @@
         t.etapesFaites && typeof t.etapesFaites === "object"
           ? t.etapesFaites
           : {},
+      etapesValeurs:
+        t.etapesValeurs && typeof t.etapesValeurs === "object"
+          ? t.etapesValeurs
+          : {},
       creeLe: t.creeLe || "",
     };
   }
@@ -383,6 +279,7 @@
       fait: !!d.fait,
       faitLe: d.faitLe || null,
       etapes: Array.isArray(d.etapes) ? d.etapes : [],
+      icone: typeof d.icone === "string" && LOGOS[d.icone] ? d.icone : "",
       creeLe: d.creeLe || Date.now(),
     };
   }
@@ -392,6 +289,7 @@
       top3: m.top3 && typeof m.top3 === "object" ? m.top3 : {},
       focus: m.focus && typeof m.focus === "object" ? m.focus : {},
       journal: m.journal && typeof m.journal === "object" ? m.journal : {},
+      faits: m.faits && typeof m.faits === "object" ? m.faits : {}, // historique : jamais effacé
     };
   }
   function normEtat(s) {
@@ -416,6 +314,15 @@
   const CLE_LOCALE = "planningZinouV2";
   const CLE_CACHE = "planningZinouCache";
   const CLE_FOCUS = "planningZinouFocus";
+
+  // Adresse de ton serveur Django (à changer le jour de la mise en ligne)
+  const API_PLANNING = "http://127.0.0.1:8000/api/planning/";
+  // Le serveur Django tourne seulement sur ton PC pour l'instant :
+  // en ligne (GitHub), l'appli marche sans compte, sur l'appareil.
+  const AVEC_SERVEUR = ["127.0.0.1", "localhost"].includes(location.hostname);
+  function jeton() {
+    return AVEC_SERVEUR ? localStorage.getItem("planningToken") : null;
+  }
 
   function lireLocal(cle) {
     try {
@@ -482,13 +389,18 @@
   };
 
   function persister(op) {
+    if (sync.mode === "api" && sync.pret) {
+      ecrireApi(op);
+      ecrireLocal(CLE_CACHE, etat);
+      return;
+    }
     if (sync.mode === "db" && sync.pret) {
       ecrireDb(op);
       ecrireLocal(CLE_CACHE, etat);
       return;
     }
     if (!sync.pret) sync.enAttente.push(op);
-    ecrireLocal(sync.mode === "db" ? CLE_CACHE : CLE_LOCALE, etat);
+    ecrireLocal(sync.mode === "db" || jeton() ? CLE_CACHE : CLE_LOCALE, etat);
   }
 
   function enFile(chemin, fn) {
@@ -542,7 +454,7 @@
       sync.erreur = true;
       rendreSync();
     } else if (code === "unavailable")
-      notifier("Connexion instable, réessaie dans un instant.");
+      notifier("Enregistrement impossible : vérifie que le serveur est lancé.");
   }
 
   // Modifications (toujours via ces fonctions)
@@ -583,7 +495,99 @@
     if (!sansRendu) rendre();
   }
 
+  /* ---------- Synchronisation avec ton serveur Django ---------- */
+
+  // Envoie une demande à l'API avec le jeton du compte
+  async function appelApi(chemin, methode, corps) {
+    const reponse = await fetch(API_PLANNING + chemin, {
+      method: methode,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Token " + jeton(),
+      },
+      body: corps === undefined ? undefined : JSON.stringify(corps),
+    });
+    if (reponse.status === 401) {
+      // Jeton refusé : on déconnecte proprement
+      localStorage.removeItem("planningToken");
+      localStorage.removeItem("planningEmail");
+      localStorage.removeItem(CLE_CACHE);
+      location.reload();
+      throw { code: "revoked" };
+    }
+    if (!reponse.ok) throw { code: "unavailable" };
+    return reponse.status === 204 ? null : reponse.json();
+  }
+
+  // Transforme une modification de l'appli en demande à l'API
+  function ecrireApi(op) {
+    let chemin, methode, corps;
+    if (op.type === "task" || op.type === "todo") {
+      chemin =
+        (op.type === "task" ? "taches/" : "todos/") +
+        encodeURIComponent(op.id) +
+        "/";
+      methode = op.suppr ? "DELETE" : "PUT";
+      corps = op.suppr ? undefined : op.valeur;
+    } else if (op.type === "meta") {
+      chemin = "suivi/";
+      methode = "PATCH";
+      corps = op.patch;
+    } else {
+      return;
+    }
+    enFile("api:" + chemin, function () {
+      return appelApi(chemin, methode, corps);
+    });
+  }
+
+  // Applique une modification faite pendant le chargement
+  function appliquerOp(op) {
+    if (op.type === "task") {
+      if (op.suppr) delete etat.tasks[op.id];
+      else etat.tasks[op.id] = normTache(op.valeur, 0);
+    } else if (op.type === "todo") {
+      if (op.suppr) delete etat.todos[op.id];
+      else etat.todos[op.id] = normTodo(op.valeur, 0);
+    } else if (op.type === "meta") fusion(etat.meta, op.patch);
+  }
+
+  // Au lancement, quand on est connecté : on charge les tâches du compte
+  async function demarrerApi() {
+    try {
+      const distant = await appelApi("etat/", "GET");
+      if (distant.nouveau) {
+        // Premier lancement du compte : on envoie les tâches déjà présentes sur cet appareil
+        const local = chargerLocal();
+        await appelApi("import/", "POST", cloner(local));
+        etat = local;
+      } else {
+        etat = normEtat(distant);
+      }
+      sync.mode = "api";
+      sync.pret = true;
+      const attente = sync.enAttente.splice(0);
+      attente.forEach(function (op) {
+        appliquerOp(op);
+        ecrireApi(op);
+      });
+      ecrireLocal(CLE_CACHE, etat);
+      rendre();
+      rendreSync();
+    } catch (e) {
+      if (e && e.code === "revoked") return;
+      sync.mode = "horsligne";
+      sync.pret = true;
+      sync.enAttente = [];
+      rendreSync();
+      notifier(
+        "Serveur injoignable : tes modifications restent sur cet appareil.",
+      );
+    }
+  }
+
   async function demarrerSync() {
+    if (jeton()) return demarrerApi();
     const claude = window.claude;
     if (!claude || typeof claude.use !== "function") return passerEnLocal();
     let dbNs = null,
@@ -814,20 +818,6 @@
     }
     return n;
   }
-  function meilleureSerie() {
-    const dates = Object.keys(etat.meta.top3 || {})
-      .filter(jourGagne)
-      .sort();
-    let best = 0,
-      cur = 0,
-      prev = null;
-    dates.forEach(function (d) {
-      cur = prev && ajouterJours(prev, 1) === d ? cur + 1 : 1;
-      if (cur > best) best = cur;
-      prev = d;
-    });
-    return best;
-  }
   function basculerTop3(cle, date) {
     const cles = top3Cles(date);
     if (cles.includes(cle)) {
@@ -859,23 +849,6 @@
     }
   }
 
-  function conseilDuJour(t, date) {
-    const liste = CONSEILS[t.categorie] || [];
-    if (!liste.length) return "";
-    const cle = t.id + (date || aujourdhui());
-    let somme = 0;
-    for (let i = 0; i < cle.length; i++)
-      somme = (somme * 31 + cle.charCodeAt(i)) % 100000;
-    return liste[somme % liste.length];
-  }
-
-  function minutesFocus(date) {
-    const j = (etat.meta.focus || {})[date] || {};
-    return Object.keys(j).reduce(function (s, k) {
-      return s + ((j[k] && j[k].min) || 0);
-    }, 0);
-  }
-
   /* =========================================================
      6. ÉTAT DE L'ÉCRAN
      ========================================================= */
@@ -889,6 +862,13 @@
     formJours: new Set(),
     iaDispo: false,
     iaEnCours: new Set(),
+    logoNouveau: "", // logo choisi pour la prochaine tâche à faire
+    logoOuvert: false, // la liste des logos est-elle ouverte ?
+    modesEtape: {}, // genre de la prochaine étape (simple / chrono / compteur)
+    bilan: { periode: "semaine", ref: aujourdhui() }, // période affichée dans le bilan
+    une: false, // écran « Une seule chose » ouvert ?
+    uneSaut: [], // tâches passées avec « Autre chose »
+    uneAffichee: null, // tâche affichée (pour l'animation)
   };
   let sampleNs = null;
 
@@ -930,7 +910,9 @@
     rendreTop3();
     rendrePlanning();
     rendreTodos();
-    rendreBilan();
+    rendreUne();
+    rendreSemaineCarte();
+    if (ui.onglet === "bilan") rendreBilan();
     restaurerFocus(f);
   }
 
@@ -938,20 +920,24 @@
   function rendreEntete() {
     const today = aujourdhui();
     const estAujourdhui = ui.jour === today;
-    $("#hero-date").textContent =
-      (estAujourdhui ? "Aujourd'hui · " : "") + dateLongue(ui.jour);
+    const dj = depuisCle(ui.jour);
+    $("#hero-date").textContent = estAujourdhui
+      ? "Aujourd'hui · " + dj.getDate() + " " + MOIS[dj.getMonth()]
+      : dateLongue(ui.jour);
     $("#clock").textContent = heureMaintenant();
 
     const etats = etatsHoraires(ui.jour);
     const todos = todosDu(ui.jour);
-    const restantes =
+    const total = etats.length + todos.length;
+    const faites =
       etats.filter(function (e) {
-        return !e.fait;
+        return e.fait;
       }).length +
       todos.filter(function (d) {
-        return !d.fait;
+        return d.fait;
       }).length;
-    $("#remaining-count").textContent = restantes;
+    $("#done-count").textContent = faites;
+    $("#remaining-count").textContent = total - faites;
 
     let prochaine;
     if (estAujourdhui)
@@ -959,14 +945,6 @@
         return e.moment === "futur" && !e.fait;
       });
     else prochaine = etats[0];
-    if (prochaine) {
-      $("#next-time").textContent = prochaine.tache.heure;
-      $("#next-title").textContent = prochaine.tache.titre;
-    } else {
-      $("#next-time").textContent = "--:--";
-      $("#next-title").textContent =
-        estAujourdhui && etats.length ? "Journée terminée" : "Rien de prévu";
-    }
 
     // Série
     const serie = serieActuelle();
@@ -1005,9 +983,9 @@
           " · jusqu'à " + (enCours.tache.heureFin || "la suite"),
         ),
       );
-      const b = el("button", "nb-btn", "Juste 2 min");
+      const b = el("button", "nb-btn", "Focus");
       b.onclick = function () {
-        ouvrirFocus(cibleTache(enCours.tache), 2, true);
+        ouvrirFocus(cibleTache(enCours.tache));
       };
       badge.appendChild(b);
     } else if (enCours && enCours.fait) {
@@ -1029,9 +1007,9 @@
       if (reste.length) {
         txt.appendChild(document.createTextNode("Rien de planifié · "));
         txt.appendChild(el("b", null, reste.length + " à faire"));
-        const b = el("button", "nb-btn", "Juste 2 min");
+        const b = el("button", "nb-btn", "Focus");
         b.onclick = function () {
-          ouvrirFocus(cibleTodo(reste[0]), 2, true);
+          ouvrirFocus(cibleTodo(reste[0]));
         };
         badge.appendChild(b);
       } else {
@@ -1075,6 +1053,8 @@
     }
   }
   function choisirJour(k) {
+    if (ui.une) ui.une = false;
+    if (ui.onglet === "bilan") montrerOnglet("planning");
     ui.jour = k;
     ui.semaine = lundiDe(k);
     ui.arme = null;
@@ -1158,37 +1138,116 @@
     genre === "task" ? enregistrerTache(item) : enregistrerTodo(item);
   }
 
+  // Valeur du compteur d'une étape (par jour pour les tâches du planning)
+  function valeurEtape(genre, item, s, date) {
+    if (genre === "task")
+      return Number(((item.etapesValeurs || {})[date] || {})[s.id]) || 0;
+    return Number(s.valeur) || 0;
+  }
+
+  // Coche ou décoche une étape dans une copie de la tâche
+  function marquerEtape(genre, copie, sid, date, fait) {
+    if (genre === "task") {
+      copie.etapesFaites[date] = copie.etapesFaites[date] || {};
+      if (fait) copie.etapesFaites[date][sid] = true;
+      else delete copie.etapesFaites[date][sid];
+    } else {
+      copie.etapes.forEach(function (x) {
+        if (x.id === sid) x.fait = fait;
+      });
+    }
+  }
+
+  // + ou − sur le compteur d'une étape, avec les messages de réussite
+  function changerCompteurEtape(genre, item, s, date, delta) {
+    const copie = cloner(item);
+    const avant = valeurEtape(genre, item, s, date);
+    const apres = Math.max(0, avant + delta);
+    if (genre === "task") {
+      copie.etapesValeurs = copie.etapesValeurs || {};
+      copie.etapesValeurs[date] = copie.etapesValeurs[date] || {};
+      copie.etapesValeurs[date][s.id] = apres;
+    } else {
+      copie.etapes.forEach(function (x) {
+        if (x.id === s.id) x.valeur = apres;
+      });
+    }
+    const obj = s.objectif;
+    const unite = s.unite ? " " + s.unite : "";
+    if (avant < obj && apres >= obj) {
+      marquerEtape(genre, copie, s.id, date, true);
+      notifier(
+        "Objectif atteint : " +
+          obj +
+          unite +
+          " ! Tu peux continuer si tu veux.",
+      );
+    } else if (avant < obj / 2 && apres >= obj / 2) {
+      notifier(
+        "La moitié ! Plus que " +
+          (obj - apres) +
+          unite +
+          ", continue comme ça.",
+      );
+    }
+    sauverItem(genre, copie);
+  }
+
   function panneauEtapes(genre, item, date) {
     const cle = (genre === "task" ? "t:" : "d:") + item.id;
     const box = el("div", "steps");
     const ul = el("ul");
     let prochaineMarquee = false;
+
     item.etapes.forEach(function (s) {
+      const mode = s.mode || "simple";
       const fait = etapeFaite(genre, item, s.id, date);
-      const li = el("li", fait ? "done" : "");
+      const li = el("li", "step-" + mode + (fait ? " done" : ""));
       if (!fait && !prochaineMarquee) {
         li.classList.add("next");
         prochaineMarquee = true;
       }
+
+      // Case à cocher
       const c = el("button", "check small" + (fait ? " on" : ""));
       c.type = "button";
       c.innerHTML = ICONES.check;
       c.setAttribute("aria-label", "Cocher l'étape");
       c.onclick = function () {
         const copie = cloner(item);
-        if (genre === "task") {
-          copie.etapesFaites[date] = copie.etapesFaites[date] || {};
-          if (fait) delete copie.etapesFaites[date][s.id];
-          else copie.etapesFaites[date][s.id] = true;
-        } else {
-          copie.etapes.forEach(function (x) {
-            if (x.id === s.id) x.fait = !fait;
-          });
-        }
+        marquerEtape(genre, copie, s.id, date, !fait);
         sauverItem(genre, copie);
       };
       li.appendChild(c);
       li.appendChild(el("span", "s-text", s.texte));
+
+      // Chrono : bouton qui lance le minuteur
+      if (mode === "chrono") {
+        const b = chip("play", s.minutes + " min", fait ? "" : "accent");
+        b.onclick = function () {
+          const base = genre === "task" ? cibleTache(item) : cibleTodo(item);
+          base.titre = base.titre + " · " + s.texte;
+          base.etapeId = s.id;
+          base.etapeDate = date;
+          ouvrirFocus(base, s.minutes, true);
+        };
+        li.appendChild(b);
+      }
+
+      // Compteur : valeur actuelle
+      let valeur = 0;
+      if (mode === "compteur") {
+        valeur = valeurEtape(genre, item, s, date);
+        li.appendChild(
+          el(
+            "span",
+            "s-valeur",
+            valeur + "/" + s.objectif + (s.unite ? " " + s.unite : ""),
+          ),
+        );
+      }
+
+      // Retirer l'étape
       const x = boutonIcone("mini-btn", "x", "Retirer l'étape");
       x.onclick = function () {
         const copie = cloner(item);
@@ -1198,18 +1257,124 @@
         sauverItem(genre, copie);
       };
       li.appendChild(x);
+
+      // Compteur : barre de progression et boutons + / −
+      if (mode === "compteur") {
+        const zone = el("div", "s-compteur");
+        const barre = el("div", "progress-track");
+        const rempli = el("div", "progress-fill");
+        rempli.style.width =
+          Math.min(100, Math.round((valeur / s.objectif) * 100)) + "%";
+        barre.appendChild(rempli);
+        zone.appendChild(barre);
+        const boutons = el("div", "compteur-boutons");
+        [-1, 1, 5, 10].forEach(function (n) {
+          const b = el(
+            "button",
+            "chip-btn" + (n > 0 ? " accent" : ""),
+            (n > 0 ? "+" : "−") + Math.abs(n),
+          );
+          b.type = "button";
+          b.setAttribute(
+            "aria-label",
+            (n > 0 ? "Ajouter " : "Retirer ") + Math.abs(n),
+          );
+          b.onclick = function () {
+            changerCompteurEtape(genre, item, s, date, n);
+          };
+          boutons.appendChild(b);
+        });
+        const libre = el("input");
+        libre.type = "number";
+        libre.inputMode = "numeric";
+        libre.placeholder = "+ …";
+        libre.className = "compteur-libre";
+        libre.dataset.fk = "clibre-" + cle + "-" + s.id;
+        libre.onkeydown = function (e) {
+          if (e.key !== "Enter") return;
+          const n = Math.round(Number(libre.value));
+          if (n) {
+            libre.value = "";
+            changerCompteurEtape(genre, item, s, date, n);
+          }
+        };
+        boutons.appendChild(libre);
+        zone.appendChild(boutons);
+        li.appendChild(zone);
+      }
       ul.appendChild(li);
     });
     if (item.etapes.length) box.appendChild(ul);
 
-    const add = el("div", "step-add");
+    // Choix du genre de la nouvelle étape
+    const modeChoisi = ui.modesEtape[cle] || "simple";
+    const choix = el("div", "step-modes");
+    [
+      ["simple", "Simple"],
+      ["chrono", "Chrono"],
+      ["compteur", "Compteur"],
+    ].forEach(function (m) {
+      const b = el(
+        "button",
+        "day-chip wide" + (modeChoisi === m[0] ? " on" : ""),
+        m[1],
+      );
+      b.type = "button";
+      b.onclick = function () {
+        ui.modesEtape[cle] = m[0];
+        rendre();
+      };
+      choix.appendChild(b);
+    });
+    box.appendChild(choix);
+
+    // Ajout d'une étape
+    const add = el(
+      "div",
+      "step-add" + (modeChoisi !== "simple" ? " options" : ""),
+    );
     const input = el("input");
     input.type = "text";
     input.maxLength = 80;
-    input.placeholder = item.etapes.length
-      ? "Ajouter une étape…"
-      : "Ex : ouvrir le cahier";
+    input.placeholder =
+      modeChoisi === "chrono"
+        ? "Ex : gainage"
+        : modeChoisi === "compteur"
+          ? "Ex : lire le livre"
+          : item.etapes.length
+            ? "Ajouter une étape…"
+            : "Ex : ouvrir le cahier";
     input.dataset.fk = "step-" + cle;
+    add.appendChild(input);
+
+    let champMinutes = null,
+      champObjectif = null,
+      champUnite = null;
+    if (modeChoisi === "chrono") {
+      champMinutes = el("input", "step-nombre");
+      champMinutes.type = "number";
+      champMinutes.min = "1";
+      champMinutes.inputMode = "numeric";
+      champMinutes.placeholder = "min";
+      champMinutes.dataset.fk = "smin-" + cle;
+      add.appendChild(champMinutes);
+    }
+    if (modeChoisi === "compteur") {
+      champObjectif = el("input", "step-nombre");
+      champObjectif.type = "number";
+      champObjectif.min = "1";
+      champObjectif.inputMode = "numeric";
+      champObjectif.placeholder = "Objectif";
+      champObjectif.dataset.fk = "sobj-" + cle;
+      champUnite = el("input", "step-unite");
+      champUnite.type = "text";
+      champUnite.maxLength = 20;
+      champUnite.placeholder = "pages";
+      champUnite.dataset.fk = "sunite-" + cle;
+      add.appendChild(champObjectif);
+      add.appendChild(champUnite);
+    }
+
     const ok = el("button", "btn btn-soft", "Ajouter");
     function ajouter() {
       const v = input.value.trim();
@@ -1217,30 +1382,42 @@
         input.focus();
         return;
       }
+      const etape = { id: nouvelId(), texte: v, fait: false, mode: modeChoisi };
+      if (modeChoisi === "chrono") {
+        const m = Math.round(Number(champMinutes.value));
+        if (!m || m < 1) {
+          champMinutes.focus();
+          return;
+        }
+        etape.minutes = Math.min(m, 600);
+      }
+      if (modeChoisi === "compteur") {
+        const o = Math.round(Number(champObjectif.value));
+        if (!o || o < 1) {
+          champObjectif.focus();
+          return;
+        }
+        etape.objectif = o;
+        etape.unite = champUnite.value.trim();
+        etape.valeur = 0;
+      }
       const copie = cloner(item);
-      copie.etapes.push({ id: nouvelId(), texte: v, fait: false });
+      copie.etapes.push(etape);
       input.value = "";
       sauverItem(genre, copie);
     }
     ok.onclick = ajouter;
-    input.onkeydown = function (e) {
-      if (e.key === "Enter") ajouter();
-    };
-    add.appendChild(input);
+    [input, champMinutes, champObjectif, champUnite].forEach(function (c) {
+      if (c)
+        c.onkeydown = function (e) {
+          if (e.key === "Enter") ajouter();
+        };
+    });
     add.appendChild(ok);
     box.appendChild(add);
 
-    const outils = el("div", "step-tools");
-    const deux = chip("play", "Juste 2 minutes", "accent");
-    deux.onclick = function () {
-      ouvrirFocus(
-        genre === "task" ? cibleTache(item) : cibleTodo(item),
-        2,
-        true,
-      );
-    };
-    outils.appendChild(deux);
     if (ui.iaDispo) {
+      const outils = el("div", "step-tools");
       const enCours = ui.iaEnCours.has(cle);
       const ia = chip(
         "spark",
@@ -1251,15 +1428,15 @@
         decouperAvecClaude(genre, item.id);
       };
       outils.appendChild(ia);
+      box.appendChild(outils);
     }
-    box.appendChild(outils);
     box.appendChild(
       el(
         "p",
         "steps-hint",
         item.etapes.length
           ? "Une étape à la fois. Commence par celle en gras."
-          : "Bloqué ? Découpe en étapes si petites qu'elles paraissent ridicules.",
+          : "Découpe ta tâche en petites étapes faciles à cocher.",
       ),
     );
     return box;
@@ -1404,8 +1581,6 @@
         ),
       );
       if (t.notes) body.appendChild(el("div", "t-notes", t.notes));
-      const conseil = conseilDuJour(t, ui.jour);
-      if (conseil) body.appendChild(el("div", "t-tip", conseil));
 
       const actions = el("div", "t-actions");
       if (!e.fait) {
@@ -1416,13 +1591,14 @@
         actions.appendChild(f);
       }
       actions.appendChild(boutonEtapes(cle, "task", t, ui.jour));
-      actions.appendChild(el("span", "spacer"));
+      // Modifier + supprimer restent ensemble, à droite
+      const outils = el("span", "t-outils");
       const ed = boutonIcone("mini-btn", "edit", "Modifier");
       ed.onclick = function () {
         ouvrirFormulaire(t);
       };
-      actions.appendChild(ed);
-      actions.appendChild(
+      outils.appendChild(ed);
+      outils.appendChild(
         boutonSupprimer(
           "del-" + cle,
           t.jours.length ? "Supprimer (tous les jours)" : "Supprimer",
@@ -1432,6 +1608,7 @@
           },
         ),
       );
+      actions.appendChild(outils);
       body.appendChild(actions);
 
       if (ui.ouverts.has(cle))
@@ -1446,6 +1623,16 @@
     const copie = cloner(etat.tasks[t.id] || t);
     if (copie.faits[date]) delete copie.faits[date];
     else copie.faits[date] = true;
+    majMeta(
+      {
+        faits: {
+          [date]: {
+            ["t:" + copie.id]: copie.faits[date] ? copie.categorie : null,
+          },
+        },
+      },
+      true,
+    );
     enregistrerTache(copie);
     apresCoche(date);
   }
@@ -1490,6 +1677,183 @@
       : "Aucun jour choisi : seulement le " + dateLongue(ui.jour) + ".";
   }
 
+  /* ---------- Choix de l'horaire : début, fin et durée ---------- */
+  const DUREES = [15, 30, 45, 60, 90, 120, 180];
+  const horaire = { debut: "", fin: "", ouvert: null }; // ouvert : "debut", "fin" ou null
+
+  function enHeure(min) {
+    min = Math.max(0, Math.min(min, 23 * 60 + 59));
+    return pad(Math.floor(min / 60)) + ":" + pad(min % 60);
+  }
+  function prochainQuart() {
+    return enHeure(Math.ceil((minutesMaintenant() + 1) / 15) * 15);
+  }
+  function dureeActuelle() {
+    if (!horaire.debut || !horaire.fin) return 0;
+    return enMinutes(horaire.fin) - enMinutes(horaire.debut);
+  }
+
+  function majHoraire() {
+    $("#planning-time").value = horaire.debut;
+    $("#planning-end").value = horaire.fin;
+    $("#aff-debut").textContent = horaire.debut || "--:--";
+    $("#aff-fin").textContent = horaire.fin || "--:--";
+    $("#btn-debut").classList.toggle("on", horaire.ouvert === "debut");
+    $("#btn-fin").classList.toggle("on", horaire.ouvert === "fin");
+    const d = dureeActuelle();
+    $("#aff-duree").textContent = d > 0 ? formatDuree(d) : "";
+
+    // Durées rapides
+    const zone = $("#durees");
+    zone.innerHTML = "";
+    DUREES.forEach(function (m) {
+      const b = el(
+        "button",
+        "day-chip wide" + (d === m ? " on" : ""),
+        formatDuree(m),
+      );
+      b.type = "button";
+      b.onclick = function () {
+        if (!horaire.debut) horaire.debut = prochainQuart();
+        horaire.fin = enHeure(enMinutes(horaire.debut) + m);
+        majHoraire();
+      };
+      zone.appendChild(b);
+    });
+    rendrePicker();
+  }
+
+  // La roue des heures et des minutes (on fait défiler, comme un réveil)
+  const ROUE_H = 40; // hauteur d'une ligne (même valeur que --roue-h dans le CSS)
+  let roue = null; // { champ, h, m } : la roue affichée
+
+  function rendrePicker() {
+    const p = $("#picker-heure");
+    if (!horaire.ouvert) {
+      p.hidden = true;
+      p.innerHTML = "";
+      roue = null;
+      return;
+    }
+    p.hidden = false;
+    if (!roue || roue.champ !== horaire.ouvert) construireRoue(horaire.ouvert);
+    else placerRoue(true);
+  }
+
+  function construireRoue(champ) {
+    const p = $("#picker-heure");
+    p.innerHTML = "";
+    p.appendChild(
+      el(
+        "div",
+        "picker-titre",
+        champ === "debut" ? "Heure de début" : "Heure de fin",
+      ),
+    );
+    const zone = el("div", "roue");
+    zone.appendChild(el("div", "roue-bande"));
+    const colH = colonneRoue(24, "Heures");
+    const colM = colonneRoue(60, "Minutes");
+    zone.appendChild(colH);
+    zone.appendChild(el("div", "roue-sep", ":"));
+    zone.appendChild(colM);
+    p.appendChild(zone);
+    const ok = el("button", "btn btn-primary btn-block", "OK");
+    ok.type = "button";
+    ok.onclick = function () {
+      horaire.ouvert = null;
+      majHoraire();
+    };
+    p.appendChild(ok);
+    roue = { champ: champ, h: colH, m: colM };
+    placerRoue(false);
+  }
+
+  function colonneRoue(nombre, nom) {
+    const c = el("div", "roue-col");
+    c.tabIndex = 0;
+    c.setAttribute("aria-label", nom);
+    for (let i = 0; i < nombre; i++) {
+      const item = el("div", "roue-item", pad(i));
+      item.onclick = function () {
+        c.scrollTo({ top: i * ROUE_H, behavior: "smooth" });
+      };
+      c.appendChild(item);
+    }
+    let attente = null;
+    c.addEventListener(
+      "scroll",
+      function () {
+        surlignerRoue(c);
+        clearTimeout(attente);
+        attente = setTimeout(lireRoue, 120);
+      },
+      { passive: true },
+    );
+    c.addEventListener("keydown", function (e) {
+      if (e.key !== "ArrowUp" && e.key !== "ArrowDown") return;
+      e.preventDefault();
+      const i = indexRoue(c) + (e.key === "ArrowDown" ? 1 : -1);
+      c.scrollTo({
+        top: Math.max(0, Math.min(i, nombre - 1)) * ROUE_H,
+        behavior: "smooth",
+      });
+    });
+    return c;
+  }
+
+  function indexRoue(c) {
+    return Math.max(
+      0,
+      Math.min(Math.round(c.scrollTop / ROUE_H), c.children.length - 1),
+    );
+  }
+
+  // Met en valeur le chiffre au centre
+  function surlignerRoue(c) {
+    const i = indexRoue(c);
+    if (c._on === i) return;
+    if (c._on != null && c.children[c._on])
+      c.children[c._on].classList.remove("on");
+    c.children[i].classList.add("on");
+    c._on = i;
+  }
+
+  // Place la roue sur l'heure enregistrée
+  function placerRoue(doux) {
+    if (!roue) return;
+    const v = horaire[roue.champ] || prochainQuart();
+    [
+      [roue.h, Number(v.slice(0, 2))],
+      [roue.m, Number(v.slice(3, 5))],
+    ].forEach(function (x) {
+      if (indexRoue(x[0]) === x[1] && x[0]._on === x[1]) return;
+      if (doux) x[0].scrollTo({ top: x[1] * ROUE_H, behavior: "smooth" });
+      else x[0].scrollTop = x[1] * ROUE_H;
+      surlignerRoue(x[0]);
+    });
+  }
+
+  // Quand la roue s'arrête : on enregistre l'heure choisie
+  function lireRoue() {
+    if (!roue) return;
+    const v = pad(indexRoue(roue.h)) + ":" + pad(indexRoue(roue.m));
+    if (v !== horaire[roue.champ]) choisirHeure(roue.champ, v);
+  }
+
+  // Quand on change le début, la fin suit en gardant la même durée
+  function choisirHeure(champ, valeur) {
+    const duree = dureeActuelle() > 0 ? dureeActuelle() : 30;
+    horaire[champ] = valeur;
+    if (champ === "debut") horaire.fin = enHeure(enMinutes(valeur) + duree);
+    majHoraire();
+  }
+
+  function basculerPicker(champ) {
+    horaire.ouvert = horaire.ouvert === champ ? null : champ;
+    majHoraire();
+  }
+
   function ouvrirFormulaire(t) {
     const form = $("#planning-form");
     form.hidden = false;
@@ -1497,8 +1861,15 @@
     $("#form-title").textContent = t ? "Modifier la tâche" : "Nouvelle tâche";
     $("#btn-add-planning").textContent = t ? "Enregistrer" : "Ajouter";
     $("#planning-title").value = t ? t.titre : "";
-    $("#planning-time").value = t ? t.heure : "";
-    $("#planning-end").value = t ? t.heureFin : "";
+    if (t) {
+      horaire.debut = t.heure;
+      horaire.fin = t.heureFin || enHeure(enMinutes(t.heure) + 30);
+    } else {
+      horaire.debut = ui.jour === aujourdhui() ? prochainQuart() : "09:00";
+      horaire.fin = enHeure(enMinutes(horaire.debut) + 30);
+    }
+    horaire.ouvert = null;
+    majHoraire();
     $("#planning-category").value = t
       ? t.categorie
       : $("#planning-category").value;
@@ -1533,17 +1904,18 @@
     }
     if (!heure) {
       afficherErreur("Choisis l'heure de début.");
-      $("#planning-time").focus();
+      basculerPicker("debut");
       return;
     }
     if (!heureFin) {
       afficherErreur("Choisis l'heure de fin.");
-      $("#planning-end").focus();
+      basculerPicker("fin");
       return;
     }
     if (enMinutes(heureFin) <= enMinutes(heure)) {
       afficherErreur("L'heure de fin doit être après l'heure de début.");
-      $("#planning-end").focus();
+      horaire.ouvert = "fin";
+      majHoraire();
       return;
     }
     afficherErreur("");
@@ -1581,7 +1953,67 @@
   }
 
   // ---------- À faire ----------
+  // Rangée de logos (formulaire ou tâche existante)
+  function rangeeLogos(actuel, choisir) {
+    const box = el("div", "logos");
+    Object.keys(LOGOS).forEach(function (l) {
+      const b = el("button", "logo-btn" + (l === actuel ? " on" : ""));
+      b.type = "button";
+      b.innerHTML = svgLogo(l);
+      b.title = LOGOS[l].nom;
+      b.setAttribute("aria-label", LOGOS[l].nom);
+      b.setAttribute("aria-pressed", l === actuel ? "true" : "false");
+      b.onclick = function () {
+        choisir(l === actuel ? "" : l);
+      };
+      box.appendChild(b);
+    });
+    if (actuel) {
+      const aucun = el("button", "chip-btn logos-aucun", "Sans logo");
+      aucun.type = "button";
+      aucun.onclick = function () {
+        choisir("");
+      };
+      box.appendChild(aucun);
+    }
+    return box;
+  }
+
+  // Logo : caché par défaut, on l'ajoute seulement si on veut
+  function rendreLogosForm() {
+    const zone = $("#todo-logos");
+    zone.innerHTML = "";
+    const l = ui.logoNouveau;
+    const bouton = el(
+      "button",
+      "chip-btn logo-choix" +
+        (l ? " choisi" : "") +
+        (ui.logoOuvert ? " ouvert" : ""),
+    );
+    bouton.type = "button";
+    bouton.setAttribute("aria-expanded", ui.logoOuvert ? "true" : "false");
+    bouton.innerHTML = l
+      ? svgLogo(l) + "<span>" + LOGOS[l].nom + "</span>"
+      : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 8.5v7M8.5 12h7"/></svg><span>Ajouter un logo</span>';
+    bouton.onclick = function () {
+      ui.logoOuvert = !ui.logoOuvert;
+      rendreLogosForm();
+    };
+    zone.appendChild(bouton);
+    if (ui.logoOuvert) {
+      zone.appendChild(
+        rangeeLogos(l, function (choix) {
+          ui.logoNouveau = choix;
+          ui.logoOuvert = false;
+          rendreLogosForm();
+          $("#todo-input").focus();
+        }),
+      );
+    }
+  }
+
   function rendreTodos() {
+    rendreLogosForm();
     const box = $("#todo-list");
     box.innerHTML = "";
     const liste = todosDu(ui.jour);
@@ -1617,6 +2049,20 @@
         cocherTodo(d, ui.jour);
       };
       main.appendChild(c);
+      // Le logo s'affiche seulement si la tâche en a un
+      if (d.icone) {
+        const logo = el("button", "todo-logo");
+        logo.type = "button";
+        logo.innerHTML = svgLogo(d.icone);
+        logo.setAttribute("aria-label", "Changer le logo");
+        logo.onclick = function () {
+          const k = "i:" + cle;
+          if (ui.ouverts.has(k)) ui.ouverts.delete(k);
+          else ui.ouverts.add(k);
+          rendre();
+        };
+        main.appendChild(logo);
+      }
       main.appendChild(el("div", "todo-title", d.texte));
       if (!d.fait && estReportee(d, ui.jour)) {
         const tag = el("span", "tag", "Reportée");
@@ -1625,6 +2071,16 @@
       }
       main.appendChild(boutonEtoile(cle, ui.jour));
       item.appendChild(main);
+      if (d.icone && ui.ouverts.has("i:" + cle)) {
+        item.appendChild(
+          rangeeLogos(d.icone, function (l) {
+            const copie = cloner(d);
+            copie.icone = l;
+            ui.ouverts.delete("i:" + cle);
+            enregistrerTodo(copie);
+          }),
+        );
+      }
 
       const actions = el("div", "t-actions");
       if (!d.fait) {
@@ -1652,6 +2108,10 @@
     const copie = cloner(etat.todos[d.id] || d);
     copie.fait = !copie.fait;
     copie.faitLe = copie.fait ? date : null;
+    majMeta(
+      { faits: { [date]: { ["d:" + copie.id]: copie.fait ? "todo" : null } } },
+      true,
+    );
     enregistrerTodo(copie);
     apresCoche(date);
   }
@@ -1664,168 +2124,654 @@
     }
     enregistrerTodo(
       normTodo(
-        { id: nouvelId(), texte: texte, date: ui.jour, creeLe: Date.now() },
+        {
+          id: nouvelId(),
+          texte: texte,
+          icone: ui.logoNouveau,
+          date: ui.jour,
+          creeLe: Date.now(),
+        },
         0,
       ),
     );
+    ui.logoNouveau = "";
+    ui.logoOuvert = false;
+    rendreLogosForm();
     input.value = "";
     input.focus();
   }
 
-  // ---------- Bilan ----------
+  // ---------- Synchro ----------
+  /* ---------- Écran « Une seule chose » ---------- */
+  // La liste des choses possibles, dans l'ordre : en cours, la prochaine, Top 3, le reste
+  function candidatsUne() {
+    const today = aujourdhui();
+    const liste = [];
+    const vus = new Set();
+    function ajouter(genre, item, contexte, categorie) {
+      const cle = (genre === "task" ? "t:" : "d:") + item.id;
+      if (vus.has(cle)) return;
+      vus.add(cle);
+      liste.push({
+        cle: cle,
+        genre: genre,
+        item: item,
+        contexte: contexte,
+        categorie: categorie,
+      });
+    }
+    const horaires = etatsHoraires(today).filter(function (e) {
+      return !e.fait;
+    });
+    const futures = horaires.filter(function (e) {
+      return e.moment === "futur";
+    });
+    function ajouterTache(e) {
+      const t = e.tache;
+      const quand =
+        e.moment === "maintenant"
+          ? "En cours · " + t.heure + " – " + enHeure(e.fin)
+          : "À " + t.heure;
+      ajouter("task", t, quand, t.categorie);
+    }
+    horaires
+      .filter(function (e) {
+        return e.moment === "maintenant";
+      })
+      .forEach(ajouterTache);
+    futures.slice(0, 1).forEach(ajouterTache);
+    top3Du(today)
+      .filter(function (e) {
+        return !e.fait;
+      })
+      .forEach(function (e) {
+        ajouter(e.genre, e.item, "Top 3", e.categorie);
+      });
+    futures.slice(1).forEach(ajouterTache);
+    todosDu(today)
+      .filter(function (d) {
+        return !d.fait;
+      })
+      .forEach(function (d) {
+        ajouter("todo", d, "À faire", null);
+      });
+    return liste;
+  }
+
+  function choseActuelle() {
+    const liste = candidatsUne();
+    if (!liste.length) return { chose: null, total: 0 };
+    let restantes = liste.filter(function (c) {
+      return !ui.uneSaut.includes(c.cle);
+    });
+    if (!restantes.length) {
+      ui.uneSaut = [];
+      restantes = liste;
+    }
+    return { chose: restantes[0], total: liste.length };
+  }
+
+  function basculerUne(ouvrir) {
+    ui.une = typeof ouvrir === "boolean" ? ouvrir : !ui.une;
+    ui.uneSaut = [];
+    ui.uneAffichee = null;
+    if (ui.une) {
+      $("#planning-form").hidden = true;
+      ui.edition = null;
+    }
+    rendre();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // La première étape pas encore faite
+  function etapeActuelle(c) {
+    const date = aujourdhui();
+    const etapes = c.item.etapes || [];
+    for (let i = 0; i < etapes.length; i++) {
+      if (!etapeFaite(c.genre, c.item, etapes[i].id, date))
+        return { etape: etapes[i], num: i + 1, total: etapes.length };
+    }
+    return null;
+  }
+
+  function rendreUne() {
+    document.body.classList.toggle("mode-une", ui.une);
+    const bouton = $("#btn-une");
+    bouton.innerHTML = ui.une
+      ? ICONES.retour + "<span>Tout afficher</span>"
+      : ICONES.play + "<span>C'est parti !</span>";
+    bouton.classList.toggle("retour", ui.une);
+    $("#une").hidden = !ui.une;
+    if (!ui.une) return;
+
+    const carte = $("#une-carte");
+    const r = choseActuelle();
+    const c = r.chose;
+    carte.innerHTML = "";
+    carte.style.removeProperty("--cat");
+    const cleAffichee = c ? c.cle : "vide";
+    carte.classList.remove("entre");
+    if (ui.uneAffichee !== cleAffichee) {
+      void carte.offsetWidth;
+      carte.classList.add("entre");
+    }
+    ui.uneAffichee = cleAffichee;
+
+    if (!c) {
+      carte.appendChild(el("div", "une-contexte", "C'est calme"));
+      carte.appendChild(el("h2", "une-titre", "Rien à faire pour l'instant."));
+      carte.appendChild(
+        el("p", "une-notes", "Tout est fait ou rien n'est prévu. Profite."),
+      );
+      const retour = el("button", "btn btn-soft", "Tout afficher");
+      retour.type = "button";
+      retour.onclick = function () {
+        basculerUne(false);
+      };
+      carte.appendChild(retour);
+      return;
+    }
+
+    if (c.categorie)
+      carte.style.setProperty("--cat", "var(--" + c.categorie + ")");
+    carte.appendChild(el("div", "une-contexte", c.contexte));
+    carte.appendChild(
+      el("h2", "une-titre", c.genre === "task" ? c.item.titre : c.item.texte),
+    );
+    if (c.genre === "task" && c.item.notes)
+      carte.appendChild(el("p", "une-notes", c.item.notes));
+
+    // L'étape à faire maintenant
+    const ea = etapeActuelle(c);
+    if (ea) {
+      const s = ea.etape;
+      const bloc = el("div", "une-etape");
+      bloc.appendChild(
+        el("span", "une-etape-num", "Étape " + ea.num + " / " + ea.total),
+      );
+      bloc.appendChild(el("p", "une-etape-texte", s.texte));
+      if (s.mode === "compteur") {
+        const valeur = valeurEtape(c.genre, c.item, s, aujourdhui());
+        const ligne = el("div", "une-compteur");
+        const barre = el("div", "progress-track");
+        const rempli = el("div", "progress-fill");
+        rempli.style.width =
+          Math.min(100, Math.round((valeur / s.objectif) * 100)) + "%";
+        barre.appendChild(rempli);
+        ligne.appendChild(barre);
+        ligne.appendChild(
+          el(
+            "span",
+            "progress-num",
+            valeur + " / " + s.objectif + (s.unite ? " " + s.unite : ""),
+          ),
+        );
+        bloc.appendChild(ligne);
+        const boutons = el("div", "compteur-boutons");
+        [-1, 1, 5, 10].forEach(function (n) {
+          const b = el(
+            "button",
+            "chip-btn" + (n > 0 ? " accent" : ""),
+            (n > 0 ? "+" : "−") + Math.abs(n),
+          );
+          b.type = "button";
+          b.onclick = function () {
+            changerCompteurEtape(c.genre, c.item, s, aujourdhui(), n);
+          };
+          boutons.appendChild(b);
+        });
+        bloc.appendChild(boutons);
+      }
+      carte.appendChild(bloc);
+    }
+
+    // Les 3 boutons
+    const actions = el("div", "une-actions");
+    const fait = el(
+      "button",
+      "btn btn-primary une-fait",
+      ea ? "Étape faite" : "C'est fait",
+    );
+    fait.type = "button";
+    fait.onclick = function () {
+      const today = aujourdhui();
+      if (ea) {
+        const copie = cloner(c.item);
+        marquerEtape(c.genre, copie, ea.etape.id, today, true);
+        if (ea.num < ea.total) {
+          sauverItem(c.genre, copie);
+          notifier("Étape faite. La suite !");
+          return;
+        }
+        sauverItem(c.genre, copie);
+      }
+      if (c.genre === "task")
+        cocherTache(etat.tasks[c.item.id] || c.item, today);
+      else cocherTodo(etat.todos[c.item.id] || c.item, today);
+      notifier("Bien joué !");
+    };
+    actions.appendChild(fait);
+
+    const chrono = ea && ea.etape.mode === "chrono";
+    const focusBtn = el("button", "btn btn-soft", "");
+    focusBtn.type = "button";
+    focusBtn.innerHTML =
+      ICONES.play +
+      "<span>" +
+      (chrono ? "Focus " + ea.etape.minutes + " min" : "Focus") +
+      "</span>";
+    focusBtn.onclick = function () {
+      const cible = c.genre === "task" ? cibleTache(c.item) : cibleTodo(c.item);
+      if (chrono) {
+        cible.titre = cible.titre + " · " + ea.etape.texte;
+        cible.etapeId = ea.etape.id;
+        cible.etapeDate = aujourdhui();
+        ouvrirFocus(cible, ea.etape.minutes, true);
+      } else ouvrirFocus(cible);
+    };
+    actions.appendChild(focusBtn);
+
+    const autre = el("button", "btn btn-ghost", "Autre chose");
+    autre.type = "button";
+    autre.disabled = r.total < 2;
+    autre.onclick = function () {
+      ui.uneSaut.push(c.cle);
+      rendreUne();
+    };
+    actions.appendChild(autre);
+    carte.appendChild(actions);
+  }
+
+  /* ---------- Bilan : semaine, mois, année (rien n'est jamais effacé) ---------- */
+  const MOIS_COURTS = [
+    "janv.",
+    "févr.",
+    "mars",
+    "avr.",
+    "mai",
+    "juin",
+    "juil.",
+    "août",
+    "sept.",
+    "oct.",
+    "nov.",
+    "déc.",
+  ];
+  const NOMS_CATS = {
+    sport: "Sport",
+    etudes: "Études",
+    menage: "Ménage / Maison",
+    admin: "Admin / Vie perso",
+    pro: "Vie pro",
+    todo: "À faire",
+  };
+
+  // Ce qui a été fait un jour donné : { "t:id": catégorie, "d:id": "todo" }
+  function faitsDu(k) {
+    const res = {};
+    const log = (etat.meta.faits || {})[k] || {};
+    Object.keys(log).forEach(function (c) {
+      if (log[c]) res[c] = log[c];
+    });
+    // anciennes données (avant l'historique)
+    Object.values(etat.tasks).forEach(function (t) {
+      const c = "t:" + t.id;
+      if (t.faits && t.faits[k] && !(c in log)) res[c] = t.categorie;
+    });
+    Object.values(etat.todos).forEach(function (d) {
+      const c = "d:" + d.id;
+      if (d.fait && d.faitLe === k && !(c in log)) res[c] = "todo";
+    });
+    return res;
+  }
+  function focusDu(k) {
+    const f = (etat.meta.focus || {})[k] || {};
+    return Object.values(f).reduce(function (s, x) {
+      return s + (x && x.min ? Number(x.min) : 0);
+    }, 0);
+  }
+
+  function bornesBilan() {
+    const p = ui.bilan.periode,
+      ref = depuisCle(ui.bilan.ref);
+    if (p === "semaine") {
+      const d = lundiDe(ui.bilan.ref);
+      return { debut: d, fin: ajouterJours(d, 6) };
+    }
+    if (p === "mois") {
+      const d = new Date(ref.getFullYear(), ref.getMonth(), 1),
+        f = new Date(ref.getFullYear(), ref.getMonth() + 1, 0);
+      return { debut: cleDate(d), fin: cleDate(f) };
+    }
+    return {
+      debut: ref.getFullYear() + "-01-01",
+      fin: ref.getFullYear() + "-12-31",
+    };
+  }
+  function titreBilan(b) {
+    const today = aujourdhui();
+    const dedans = b.debut <= today && today <= b.fin;
+    const d = depuisCle(b.debut),
+      f = depuisCle(b.fin);
+    if (ui.bilan.periode === "semaine") {
+      if (dedans) return "Cette semaine";
+      return (
+        d.getDate() +
+        " " +
+        MOIS_COURTS[d.getMonth()] +
+        " – " +
+        f.getDate() +
+        " " +
+        MOIS_COURTS[f.getMonth()] +
+        (f.getFullYear() !== new Date().getFullYear()
+          ? " " + f.getFullYear()
+          : "")
+      );
+    }
+    if (ui.bilan.periode === "mois") {
+      const t = MOIS[d.getMonth()] + " " + d.getFullYear();
+      return t.charAt(0).toUpperCase() + t.slice(1);
+    }
+    return String(d.getFullYear());
+  }
+  function deplacerBilan(sens) {
+    const p = ui.bilan.periode,
+      ref = depuisCle(ui.bilan.ref);
+    if (p === "semaine") ui.bilan.ref = ajouterJours(ui.bilan.ref, 7 * sens);
+    else if (p === "mois")
+      ui.bilan.ref = cleDate(
+        new Date(ref.getFullYear(), ref.getMonth() + sens, 1),
+      );
+    else ui.bilan.ref = cleDate(new Date(ref.getFullYear() + sens, 0, 1));
+    rendreBilan();
+  }
+
   function rendreBilan() {
     const today = aujourdhui();
-    const serie = serieActuelle();
-    const record = Math.max(meilleureSerie(), serie);
-    $("#streak-num").textContent = serie;
-    $("#streak-label").textContent =
-      serie === 0
-        ? "Termine ton Top 3 aujourd'hui pour lancer ta série."
-        : serie > 1
-          ? "jours d'affilée avec ton Top 3 terminé"
-          : "jour avec ton Top 3 terminé. Continue demain !";
-    $("#streak-record").textContent =
-      "Record : " + record + " jour" + (record > 1 ? "s" : "");
-    const dots = $("#streak-dots");
-    dots.innerHTML = "";
-    for (let i = 6; i >= 0; i--) {
-      const k = ajouterJours(today, -i);
-      const s = el(
-        "span",
-        "sd" + (jourGagne(k) ? " ok" : "") + (k === today ? " today" : ""),
-      );
-      s.title = dateLongue(k) + (jourGagne(k) ? " : Top 3 terminé" : "");
-      s.appendChild(el("i"));
-      s.appendChild(document.createTextNode(JOURS_LETTRE[jourSemaine(k)]));
-      dots.appendChild(s);
-    }
-
-    // Chiffres du jour choisi
-    $("#bilan-label").textContent =
-      ui.jour === today
-        ? "Aujourd'hui en chiffres"
-        : dateLongue(ui.jour) + " en chiffres";
-    const top = top3Du(ui.jour);
-    const etats = etatsHoraires(ui.jour);
-    const todos = todosDu(ui.jour);
-    const tiles = [
-      [
-        top.filter(function (e) {
-          return e.fait;
-        }).length +
-          " / " +
-          top.length,
-        "Top 3",
-      ],
-      [
-        etats.filter(function (e) {
-          return e.fait;
-        }).length +
-          " / " +
-          etats.length,
-        "Planning",
-      ],
-      [
-        todos.filter(function (d) {
-          return d.fait;
-        }).length +
-          " / " +
-          todos.length,
-        "À faire",
-      ],
-      [formatDuree(minutesFocus(ui.jour)), "Focus"],
-    ];
-    const box = $("#bilan-tiles");
-    box.innerHTML = "";
-    tiles.forEach(function (t) {
-      const d = el("div", "tile");
-      d.appendChild(el("b", null, t[0]));
-      d.appendChild(el("span", null, t[1]));
-      box.appendChild(d);
+    const b = bornesBilan();
+    document.querySelectorAll("#bilan-periodes button").forEach(function (x) {
+      x.classList.toggle("on", x.dataset.p === ui.bilan.periode);
     });
+    $("#bilan-titre").textContent = titreBilan(b);
+    $("#bilan-suiv").disabled = b.fin >= today;
 
-    // Barres focus (7 derniers jours)
-    const bars = $("#focus-bars");
-    bars.innerHTML = "";
-    const valeurs = [];
-    for (let i = 6; i >= 0; i--) {
-      const k = ajouterJours(today, -i);
-      valeurs.push({ k: k, min: minutesFocus(k) });
+    // On parcourt chaque jour de la période
+    const total = {
+      faits: 0,
+      planning: 0,
+      prevues: 0,
+      focus: 0,
+      top3: 0,
+      actifs: 0,
+      jours: 0,
+    };
+    const cats = {};
+    const unites = []; // une barre par jour (semaine, mois) ou par mois (année)
+    for (let k = b.debut; k <= b.fin; k = ajouterJours(k, 1)) {
+      const f = faitsDu(k);
+      const n = Object.keys(f).length;
+      const fm = focusDu(k);
+      Object.keys(f).forEach(function (c) {
+        cats[f[c]] = (cats[f[c]] || 0) + 1;
+        if (c.indexOf("t:") === 0) total.planning++;
+      });
+      total.faits += n;
+      total.focus += fm;
+      if (k <= today) {
+        total.jours++;
+        total.prevues += tachesDu(k).length;
+        if (n) total.actifs++;
+        if (jourGagne(k)) total.top3++;
+      }
+      const d = depuisCle(k);
+      if (ui.bilan.periode === "annee") {
+        const m = d.getMonth();
+        if (!unites[m])
+          unites[m] = {
+            valeur: 0,
+            focus: 0,
+            label: MOIS[m].charAt(0).toUpperCase(),
+            titre: MOIS[m].charAt(0).toUpperCase() + MOIS[m].slice(1),
+            actuel: false,
+            futur: true,
+          };
+        unites[m].valeur += n;
+        unites[m].focus += fm;
+        if (k === today) unites[m].actuel = true;
+        if (k <= today) unites[m].futur = false;
+      } else {
+        unites.push({
+          valeur: n,
+          focus: fm,
+          label:
+            ui.bilan.periode === "semaine"
+              ? JOURS_LETTRE[d.getDay()]
+              : String(d.getDate()),
+          titre:
+            JOURS_COURTS[d.getDay()] +
+            " " +
+            d.getDate() +
+            " " +
+            MOIS_COURTS[d.getMonth()],
+          actuel: k === today,
+          futur: k > today,
+        });
+      }
     }
-    const max = Math.max.apply(
-      null,
-      valeurs
-        .map(function (v) {
-          return v.min;
-        })
-        .concat([30]),
+
+    // Tuiles
+    const tuiles = $("#bilan-tuiles");
+    tuiles.innerHTML = "";
+    const h = Math.floor(total.focus / 60),
+      mn = total.focus % 60;
+    const taux = total.prevues
+      ? Math.min(100, Math.round((total.planning / total.prevues) * 100))
+      : null;
+    [
+      [String(total.faits), total.faits > 1 ? "tâches faites" : "tâche faite"],
+      [h ? h + " h" + (mn ? " " + pad(mn) : "") : mn + " min", "de focus"],
+      [String(total.top3), "Top 3 réussi" + (total.top3 > 1 ? "s" : "")],
+      [taux === null ? "–" : taux + " %", "du planning fait"],
+    ].forEach(function (t) {
+      const x = el("div", "tuile");
+      x.appendChild(el("b", null, t[0]));
+      x.appendChild(el("span", null, t[1]));
+      tuiles.appendChild(x);
+    });
+    $("#bilan-moyenne").textContent = total.actifs
+      ? total.actifs +
+        " jour" +
+        (total.actifs > 1 ? "s" : "") +
+        " actif" +
+        (total.actifs > 1 ? "s" : "") +
+        " sur " +
+        total.jours
+      : "";
+
+    // Graphique en barres
+    const zone = $("#bilan-barres");
+    zone.innerHTML = "";
+    zone.className = "barres " + ui.bilan.periode;
+    const max = Math.max(
+      1,
+      ...unites.map(function (u) {
+        return u.valeur;
+      }),
     );
-    const total = valeurs.reduce(function (s, v) {
-      return s + v.min;
-    }, 0);
-    $("#bars-meta").textContent = total
-      ? formatDuree(total) + " au total"
-      : "Lance un focus pour remplir";
-    const labels = $("#bar-labels");
-    labels.innerHTML = "";
-    valeurs.forEach(function (v) {
-      const col = el("div", "bar-col");
-      col.appendChild(
-        el(
-          "div",
-          "bar-tip",
-          dateLongue(v.k) +
-            " · " +
-            (v.min ? formatDuree(v.min) : "aucun focus"),
-        ),
+    const bulle = el("div", "bulle");
+    bulle.hidden = true;
+    const piste = el("div", "barres-piste");
+    let maxMontre = false;
+    unites.forEach(function (u, i) {
+      const col = el(
+        "button",
+        "barre" + (u.actuel ? " actuel" : "") + (u.futur ? " futur" : ""),
       );
-      if (v.k === today && v.min)
-        col.appendChild(el("div", "bar-val", formatDuree(v.min)));
-      const bar = el("div", "bar" + (v.min ? "" : " zero"));
-      bar.style.height = v.min
-        ? Math.max(4, Math.round((v.min / max) * 100)) + "%"
-        : "2px";
-      col.appendChild(bar);
-      bars.appendChild(col);
+      col.type = "button";
+      const texte =
+        u.titre +
+        " : " +
+        u.valeur +
+        " tâche" +
+        (u.valeur > 1 ? "s" : "") +
+        (u.focus ? " · " + formatDuree(u.focus) + " de focus" : "");
+      col.setAttribute("aria-label", texte);
+      const rempli = el("i");
+      rempli.style.height =
+        (u.valeur ? Math.max(4, (u.valeur / max) * 100) : 0) + "%";
+      if (u.valeur === max && u.valeur > 0 && !maxMontre) {
+        maxMontre = true;
+        rempli.appendChild(el("em", null, String(u.valeur)));
+      }
+      col.appendChild(rempli);
+      const montrer = function () {
+        bulle.textContent = "";
+        bulle.appendChild(
+          el("b", null, u.valeur + " tâche" + (u.valeur > 1 ? "s" : "")),
+        );
+        bulle.appendChild(
+          el(
+            "span",
+            null,
+            u.titre +
+              (u.focus ? " · " + formatDuree(u.focus) + " de focus" : ""),
+          ),
+        );
+        bulle.hidden = false;
+        const r = col.getBoundingClientRect(),
+          z = zone.getBoundingClientRect();
+        const x = r.left - z.left + r.width / 2;
+        bulle.style.left = Math.max(70, Math.min(z.width - 70, x)) + "px";
+      };
+      col.addEventListener("pointerenter", montrer);
+      col.addEventListener("focus", montrer);
+      col.addEventListener("click", montrer);
+      col.addEventListener("pointerleave", function () {
+        bulle.hidden = true;
+      });
+      col.addEventListener("blur", function () {
+        bulle.hidden = true;
+      });
+      piste.appendChild(col);
+    });
+    zone.appendChild(bulle);
+    zone.appendChild(piste);
+    const labels = el("div", "barres-labels");
+    unites.forEach(function (u, i) {
+      const montre =
+        ui.bilan.periode !== "mois" || i === 0 || (i + 1) % 5 === 0;
       labels.appendChild(
-        el(
-          "span",
-          v.k === today ? "today" : "",
-          JOURS_LETTRE[jourSemaine(v.k)],
-        ),
+        el("span", u.actuel ? "actuel" : null, montre ? u.label : ""),
       );
     });
+    zone.appendChild(labels);
 
-    // Journal : on ne touche pas au champ en cours d'écriture
-    const j = (etat.meta.journal || {})[ui.jour] || {};
-    const jb = $("#journal-bien"),
-      jc = $("#journal-change");
-    if (document.activeElement !== jb) jb.value = j.bien || "";
-    if (document.activeElement !== jc) jc.value = j.change || "";
-
-    $("#btn-demain").textContent =
-      ui.jour === today ? "Préparer demain" : "Préparer le jour suivant";
+    // Par catégorie
+    const liste = $("#bilan-cats");
+    liste.innerHTML = "";
+    const cles = Object.keys(cats).sort(function (a, c) {
+      return cats[c] - cats[a];
+    });
+    if (!cles.length) {
+      liste.appendChild(
+        el(
+          "p",
+          "hint",
+          "Rien de coché sur cette période. Chaque tâche cochée apparaîtra ici.",
+        ),
+      );
+      return;
+    }
+    const maxCat = cats[cles[0]];
+    cles.forEach(function (c) {
+      const ligne = el("div", "cat-ligne");
+      ligne.style.setProperty(
+        "--cat",
+        c === "todo" ? "var(--ink)" : "var(--" + c + ")",
+      );
+      ligne.appendChild(el("span", "cat-nom", NOMS_CATS[c] || c));
+      const piste = el("div", "cat-piste");
+      const rempli = el("i");
+      rempli.style.width = Math.max(3, (cats[c] / maxCat) * 100) + "%";
+      piste.appendChild(rempli);
+      ligne.appendChild(piste);
+      ligne.appendChild(el("b", "cat-val", String(cats[c])));
+      liste.appendChild(ligne);
+    });
   }
 
-  let minuteurJournal = null;
-  function saisieJournal() {
-    const bien = $("#journal-bien").value,
-      change = $("#journal-change").value;
-    const jour = ui.jour;
-    etat.meta.journal[jour] = { bien: bien, change: change };
-    clearTimeout(minuteurJournal);
-    minuteurJournal = setTimeout(function () {
-      majMeta({ journal: { [jour]: { bien: bien, change: change } } }, true);
-    }, 700);
+  // Petite carte « Ta semaine » (colonne de gauche sur PC)
+  function rendreSemaineCarte() {
+    const zone = $("#semaine-carte");
+    const today = aujourdhui();
+    const lundi = lundiDe(today);
+    let faits = 0,
+      focusMin = 0;
+    const jours = [];
+    for (let i = 0; i < 7; i++) {
+      const k = ajouterJours(lundi, i);
+      const n = Object.keys(faitsDu(k)).length;
+      faits += n;
+      focusMin += focusDu(k);
+      jours.push({ k: k, n: n });
+    }
+    const max = Math.max(
+      1,
+      ...jours.map(function (j) {
+        return j.n;
+      }),
+    );
+    zone.innerHTML = "";
+    const tete = el("div", "card-head");
+    tete.appendChild(el("div", "card-title", "Ta semaine"));
+    tete.appendChild(el("div", "card-meta", "Voir le bilan →"));
+    zone.appendChild(tete);
+    const chiffres = el("div", "sc-chiffres");
+    const h = Math.floor(focusMin / 60),
+      mn = focusMin % 60;
+    [
+      [String(faits), faits > 1 ? "tâches faites" : "tâche faite"],
+      [h ? h + " h" + (mn ? " " + pad(mn) : "") : mn + " min", "de focus"],
+    ].forEach(function (c) {
+      const x = el("div", "sc-chiffre");
+      x.appendChild(el("b", null, c[0]));
+      x.appendChild(el("span", null, c[1]));
+      chiffres.appendChild(x);
+    });
+    zone.appendChild(chiffres);
+    const barres = el("div", "sc-barres");
+    jours.forEach(function (j) {
+      const col = el(
+        "div",
+        "sc-col" +
+          (j.k === today ? " actuel" : "") +
+          (j.k > today ? " futur" : ""),
+      );
+      const piste = el("div", "sc-piste");
+      const i = el("i");
+      i.style.height = (j.n ? Math.max(8, (j.n / max) * 100) : 0) + "%";
+      piste.appendChild(i);
+      col.appendChild(piste);
+      col.appendChild(el("span", null, JOURS_LETTRE[jourSemaine(j.k)]));
+      col.title = j.n + " tâche" + (j.n > 1 ? "s" : "");
+      barres.appendChild(col);
+    });
+    zone.appendChild(barres);
   }
 
-  // ---------- Synchro ----------
   function rendreSync() {
     const n = $("#sync-note");
-    n.classList.toggle("ok", sync.mode === "db" && !sync.erreur);
+    n.classList.toggle(
+      "ok",
+      (sync.mode === "db" || sync.mode === "api") && !sync.erreur,
+    );
     if (!sync.pret) n.textContent = "Chargement…";
     else if (sync.erreur)
       n.textContent = "Synchro interrompue : recharge la page.";
+    else if (sync.mode === "api") n.textContent = "Enregistré sur ton compte";
+    else if (sync.mode === "horsligne")
+      n.textContent =
+        "Serveur injoignable : modifications gardées sur cet appareil";
     else if (sync.mode === "db")
       n.textContent = "Synchronisé entre ton téléphone et ton ordi";
     else n.textContent = "Enregistré sur cet appareil";
@@ -1833,6 +2779,8 @@
 
   function montrerOnglet(nom) {
     ui.onglet = nom;
+    document.body.dataset.onglet = nom;
+    if (nom === "bilan") rendreBilan();
     document.querySelectorAll(".tab").forEach(function (t) {
       t.classList.toggle("active", t.dataset.tab === nom);
     });
@@ -1865,6 +2813,7 @@
     cible: null,
     debutA: 0,
   };
+  if (focus.statut === "pret" && focus.duree < 15) focus.duree = 25;
   let boucleFocus = null;
   let audio = null;
 
@@ -1960,6 +2909,7 @@
     jouerSon();
     if (focus.mode === "focus") {
       enregistrerSession(focus.duree);
+      if (focus.cible && focus.cible.etapeId) terminerEtapeFocus();
       focus.statut = "fini";
     } else {
       focus.statut = "pret";
@@ -1972,14 +2922,18 @@
     $("#focus-sheet").hidden = false;
     rendreFocus();
   }
+  // Coche automatiquement l'étape dont le chrono vient de finir
+  function terminerEtapeFocus() {
+    const c = focus.cible;
+    const item = c.genre === "task" ? etat.tasks[c.id] : etat.todos[c.id];
+    if (!item) return;
+    const copie = cloner(item);
+    marquerEtape(c.genre, copie, c.etapeId, c.etapeDate || aujourdhui(), true);
+    sauverItem(c.genre, copie);
+  }
   function lancerPause(min) {
     focus.dureeAvantPause = focus.duree;
     focus.mode = "pause";
-    focus.duree = min;
-    demarrerFocus();
-  }
-  function continuer(min) {
-    focus.mode = "focus";
     focus.duree = min;
     demarrerFocus();
   }
@@ -2035,7 +2989,7 @@
       focus.mode === "pause" ? "Pause" : "Mode focus";
     $("#focus-task").textContent =
       focus.mode === "pause"
-        ? "Respire, étire-toi, bois un verre d'eau"
+        ? "Pause"
         : focus.cible
           ? focus.cible.titre
           : "Session libre";
@@ -2056,25 +3010,14 @@
 
     // Message
     let msg = "";
-    if (focus.statut === "pret")
-      msg =
-        focus.duree === 2
-          ? "Juste 2 minutes. Pas plus. Tu as le droit d'arrêter après."
-          : "Téléphone retourné, une seule chose à la fois.";
+    const etape = !!(focus.cible && focus.cible.etapeId);
+    if (focus.statut === "pret") msg = "Une seule chose à la fois.";
     if (focus.statut === "fini")
-      msg =
-        focus.duree === 2
-          ? "2 minutes faites ! Le plus dur, c'était de commencer. Tu continues ?"
-          : "Bien joué : " + formatDuree(focus.duree) + " de concentration.";
-    if (focus.statut === "marche" && focus.mode === "focus") {
-      const t =
-        focus.cible && focus.cible.genre === "task"
-          ? etat.tasks[focus.cible.id]
-          : null;
-      msg = t
-        ? conseilDuJour(t, aujourdhui())
-        : "Une seule chose à la fois. Tu peux réduire cette fenêtre.";
-    }
+      msg = etape
+        ? "Étape terminée, elle est cochée."
+        : formatDuree(focus.duree) + " de concentration.";
+    if (focus.statut === "marche" && focus.mode === "focus")
+      msg = "Tu peux réduire cette fenêtre, le chrono continue.";
     if (focus.statut === "pause") msg = "Reprends quand tu es prêt.";
     $("#focus-msg").textContent = msg;
 
@@ -2101,33 +3044,18 @@
       bouton("Reprendre", "btn-primary", reprendreFocus);
       bouton("Arrêter", "btn-ghost", arreterFocus);
     } else if (focus.statut === "fini") {
-      if (focus.duree === 2) {
-        bouton("Continuer 15 min", "btn-primary", function () {
-          continuer(15);
+      if (focus.cible && !etape && !cibleFaite(focus.cible))
+        bouton("Tâche terminée", "btn-primary", function () {
+          terminerCible();
         });
-        if (focus.cible && !cibleFaite(focus.cible))
-          bouton("C'est fait", "btn-soft", function () {
-            terminerCible();
-          });
-        bouton("J'arrête là", "btn-ghost", function () {
-          focus.statut = "pret";
-          sauverFocus();
-          fermerFocus();
-        });
-      } else {
-        if (focus.cible && !cibleFaite(focus.cible))
-          bouton("Tâche terminée", "btn-primary", function () {
-            terminerCible();
-          });
-        bouton("Pause 5 min", "btn-soft", function () {
-          lancerPause(5);
-        });
-        bouton("Fermer", "btn-ghost", function () {
-          focus.statut = "pret";
-          sauverFocus();
-          fermerFocus();
-        });
-      }
+      bouton("Pause 5 min", "btn-soft", function () {
+        lancerPause(5);
+      });
+      bouton("Fermer", "btn-ghost", function () {
+        focus.statut = "pret";
+        sauverFocus();
+        fermerFocus();
+      });
     }
 
     // Pastille quand la fenêtre est réduite
@@ -2292,7 +3220,6 @@
           CATEGORIES[t.categorie].label +
           (t.heureFin ? " · jusqu'à " + t.heureFin : "");
         $("#alert-title").textContent = t.titre;
-        $("#alert-tip").textContent = conseilDuJour(t, today);
         $("#alert-overlay").hidden = false;
         jouerSon();
       }
@@ -2305,7 +3232,39 @@
   /* =========================================================
      11. BRANCHEMENTS ET DÉMARRAGE
      ========================================================= */
+  // Pas de zoom : ni en pinçant (iPhone), ni avec Ctrl + molette
+  function bloquerZoom() {
+    ["gesturestart", "gesturechange"].forEach(function (ev) {
+      document.addEventListener(
+        ev,
+        function (e) {
+          e.preventDefault();
+        },
+        { passive: false },
+      );
+    });
+    document.addEventListener(
+      "touchmove",
+      function (e) {
+        if (e.touches && e.touches.length > 1) e.preventDefault();
+      },
+      { passive: false },
+    );
+    document.addEventListener(
+      "wheel",
+      function (e) {
+        if (e.ctrlKey) e.preventDefault();
+      },
+      { passive: false },
+    );
+    document.addEventListener("keydown", function (e) {
+      if ((e.ctrlKey || e.metaKey) && ["+", "-", "=", "0"].includes(e.key))
+        e.preventDefault();
+    });
+  }
+
   function brancher() {
+    bloquerZoom();
     $("#week-prev").innerHTML = ICONES.left;
     $("#week-next").innerHTML = ICONES.right;
     $("#focus-close").innerHTML = ICONES.minus;
@@ -2329,23 +3288,44 @@
       else fermerFormulaire();
     };
     $("#btn-cancel-planning").onclick = fermerFormulaire;
+    $("#btn-debut").onclick = function () {
+      basculerPicker("debut");
+    };
+    $("#btn-fin").onclick = function () {
+      basculerPicker("fin");
+    };
     $("#btn-add-planning").onclick = validerFormulaire;
     $("#planning-title").addEventListener("keydown", function (e) {
       if (e.key === "Enter") validerFormulaire();
     });
 
+    $("#btn-une").onclick = function () {
+      basculerUne();
+    };
+    $("#semaine-carte").onclick = function () {
+      ui.bilan = { periode: "semaine", ref: aujourdhui() };
+      montrerOnglet("bilan");
+    };
+    $("#bilan-prec").innerHTML = ICONES.left;
+    $("#bilan-suiv").innerHTML = ICONES.right;
+    $("#bilan-prec").onclick = function () {
+      deplacerBilan(-1);
+    };
+    $("#bilan-suiv").onclick = function () {
+      deplacerBilan(1);
+    };
+    document.querySelectorAll("#bilan-periodes button").forEach(function (b) {
+      b.onclick = function () {
+        ui.bilan.periode = b.dataset.p;
+        ui.bilan.ref = aujourdhui();
+        rendreBilan();
+      };
+    });
+    document.body.dataset.onglet = ui.onglet;
     $("#btn-add-todo").onclick = ajouterTodo;
     $("#todo-input").addEventListener("keydown", function (e) {
       if (e.key === "Enter") ajouterTodo();
     });
-
-    $("#journal-bien").addEventListener("input", saisieJournal);
-    $("#journal-change").addEventListener("input", saisieJournal);
-    $("#btn-demain").onclick = function () {
-      choisirJour(ajouterJours(ui.jour, 1));
-      montrerOnglet("planning");
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    };
 
     // Focus
     $("#focus-durations")
@@ -2371,10 +3351,6 @@
 
     // Alerte
     $("#btn-alert-later").onclick = fermerAlerte;
-    $("#btn-alert-2min").onclick = function () {
-      fermerAlerte();
-      if (alerteCible) ouvrirFocus(cibleTache(alerteCible), 2, true);
-    };
     $("#btn-alert-focus").onclick = function () {
       fermerAlerte();
       if (alerteCible) ouvrirFocus(cibleTache(alerteCible));
@@ -2395,6 +3371,7 @@
     } else {
       rendreEntete();
       rendrePlanningEtats();
+      if (ui.une) rendreUne();
     }
     verifierAlertes();
   }
@@ -2412,7 +3389,7 @@
 
   async function demarrer() {
     // Affichage immédiat avec ce qu'on a sur l'appareil
-    const cache = window.claude ? lireLocal(CLE_CACHE) : null;
+    const cache = window.claude || jeton() ? lireLocal(CLE_CACHE) : null;
     etat = cache && cache.tasks ? normEtat(cache) : chargerLocal();
     brancher();
     rendre();
@@ -2481,4 +3458,104 @@
 
   // Toucher l'écran passe l'intro
   intro.addEventListener("click", retirer);
+})();
+
+/* ---------- Compte : connexion / inscription ---------- */
+(function () {
+  // En ligne (GitHub), pas de compte tant que le serveur n'est pas en ligne
+  if (!["127.0.0.1", "localhost"].includes(location.hostname)) return;
+  const API = "http://127.0.0.1:8000/api/comptes/";
+
+  const ecran = document.querySelector("#auth");
+  const form = document.querySelector("#auth-form");
+  const titre = document.querySelector("#auth-titre");
+  const sous = document.querySelector("#auth-sous");
+  const champEmail = document.querySelector("#auth-email");
+  const champMdp = document.querySelector("#auth-password");
+  const erreur = document.querySelector("#auth-erreur");
+  const bouton = document.querySelector("#auth-bouton");
+  const bascule = document.querySelector("#auth-bascule");
+  const barre = document.querySelector("#compte-bar");
+  const emailAffiche = document.querySelector("#compte-email");
+  const btnDeconnexion = document.querySelector("#btn-deconnexion");
+
+  let mode = "connexion"; // ou "inscription"
+
+  // Change les textes selon le mode
+  function afficherMode() {
+    const inscription = mode === "inscription";
+    titre.textContent = inscription ? "Créer un compte" : "Connexion";
+    sous.textContent = inscription
+      ? "Un petit pas maintenant, un grand futur demain."
+      : "Content de te revoir !";
+    bouton.textContent = inscription ? "Créer mon compte" : "Se connecter";
+    bascule.textContent = inscription
+      ? "Déjà un compte ? Se connecter"
+      : "Pas encore de compte ? Créer un compte";
+    champMdp.autocomplete = inscription ? "new-password" : "current-password";
+  }
+
+  // Affiche l'email connecté en bas de l'appli
+  function afficherCompte() {
+    const email = localStorage.getItem("planningEmail");
+    barre.hidden = !email;
+    emailAffiche.textContent = email ? "Connecté : " + email : "";
+  }
+
+  // Bouton pour passer de Connexion à Inscription (et inversement)
+  bascule.addEventListener("click", function () {
+    mode = mode === "connexion" ? "inscription" : "connexion";
+    erreur.textContent = "";
+    afficherMode();
+  });
+
+  // Envoi du formulaire au serveur
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    erreur.textContent = "";
+    bouton.disabled = true;
+    bouton.textContent = "Patiente…";
+
+    try {
+      const reponse = await fetch(API + mode + "/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: champEmail.value,
+          password: champMdp.value,
+        }),
+      });
+      const donnees = await reponse.json();
+
+      if (reponse.ok) {
+        localStorage.setItem("planningToken", donnees.token);
+        localStorage.setItem("planningEmail", donnees.email);
+        // On recharge l'appli pour charger les tâches du compte
+        location.reload();
+        return;
+      } else {
+        erreur.textContent = donnees.erreur || "Une erreur est survenue.";
+      }
+    } catch (err) {
+      erreur.textContent =
+        "Impossible de joindre le serveur. Est-il bien lancé ?";
+    }
+    bouton.disabled = false;
+    afficherMode();
+  });
+
+  // Déconnexion : on oublie le jeton et les tâches du compte sur cet appareil
+  btnDeconnexion.addEventListener("click", function () {
+    localStorage.removeItem("planningToken");
+    localStorage.removeItem("planningEmail");
+    localStorage.removeItem("planningZinouCache");
+    location.reload();
+  });
+
+  // Au lancement
+  afficherMode();
+  afficherCompte();
+  if (!localStorage.getItem("planningToken")) {
+    ecran.hidden = false;
+  }
 })();

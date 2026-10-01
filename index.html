@@ -2,7 +2,10 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
     <title>Planning Zinou</title>
     <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#33415C" />
@@ -10,10 +13,6 @@
     <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Planning" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Young+Serif&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -29,16 +28,46 @@
         <span>un grand futur demain.</span>
       </p>
     </div>
+
+    <div id="auth" class="auth" hidden>
+      <form id="auth-form" class="auth-card" novalidate>
+        <img src="icons/icon-192.png" alt="" class="auth-logo" />
+        <h2 id="auth-titre">Connexion</h2>
+        <p class="auth-sous" id="auth-sous">Content de te revoir !</p>
+        <label class="field"
+          ><span>Email</span>
+          <input type="email" id="auth-email" autocomplete="email" />
+        </label>
+        <label class="field"
+          ><span>Mot de passe</span>
+          <input
+            type="password"
+            id="auth-password"
+            autocomplete="current-password"
+          />
+        </label>
+        <p class="form-error" id="auth-erreur"></p>
+        <button
+          type="submit"
+          class="btn btn-primary btn-block"
+          id="auth-bouton"
+        >
+          Se connecter
+        </button>
+        <button type="button" class="btn btn-ghost btn-block" id="auth-bascule">
+          Pas encore de compte ? Créer un compte
+        </button>
+      </form>
+    </div>
+
     <!-- ===== Alerte discrète à l'heure d'une tâche ===== -->
     <div id="alert-overlay" class="toast" role="status" hidden>
       <div class="toast-cat" id="alert-cat"></div>
       <p class="toast-title" id="alert-title"></p>
-      <p class="toast-tip" id="alert-tip"></p>
       <div class="toast-actions">
         <button class="btn btn-toast-ghost" id="btn-alert-later">
           Plus tard
         </button>
-        <button class="btn btn-toast" id="btn-alert-2min">Juste 2 min</button>
         <button class="btn btn-toast" id="btn-alert-focus">Focus</button>
       </div>
     </div>
@@ -85,7 +114,6 @@
           </div>
         </div>
         <div class="durations" id="focus-durations">
-          <button class="dur" data-min="2">2 min</button>
           <button class="dur" data-min="15">15</button>
           <button class="dur" data-min="25">25</button>
           <button class="dur" data-min="45">45</button>
@@ -97,193 +125,249 @@
     </div>
 
     <div class="app">
-      <!-- ===== En-tête ===== -->
+      <!-- ===== En-tête (toute la largeur) ===== -->
       <header class="hero">
-        <div class="hero-top">
-          <div>
-            <div class="eyebrow" id="hero-date"></div>
-            <h1>Salut Zinou</h1>
+        <div class="hero-in">
+          <div class="hero-top">
+            <div>
+              <div class="eyebrow" id="hero-date"></div>
+              <h1>Salut Zinou</h1>
+            </div>
+            <div
+              class="streak-chip"
+              id="streak-chip"
+              title="Jours d'affilée avec ton Top 3 terminé"
+            ></div>
           </div>
-          <div
-            class="streak-chip"
-            id="streak-chip"
-            title="Jours d'affilée avec ton Top 3 terminé"
-          ></div>
-        </div>
-        <div class="stats">
-          <div class="stat"><b id="clock">--:--</b><span>Maintenant</span></div>
-          <div class="stat">
-            <b id="next-time">--:--</b><span id="next-title">Prochaine</span>
+          <div class="stats">
+            <div class="stat">
+              <b id="clock">--:--</b><span>Maintenant</span>
+            </div>
+            <div class="stat"><b id="done-count">0</b><span>Faites</span></div>
+            <div class="stat">
+              <b id="remaining-count">0</b><span>Restantes</span>
+            </div>
           </div>
-          <div class="stat">
-            <b id="remaining-count">0</b><span>Restantes</span>
+          <div class="now-badge" id="now-badge"></div>
+          <div class="week">
+            <button
+              class="icon-btn"
+              id="week-prev"
+              aria-label="Semaine précédente"
+            ></button>
+            <div class="week-days" id="week-days"></div>
+            <button
+              class="icon-btn"
+              id="week-next"
+              aria-label="Semaine suivante"
+            ></button>
           </div>
-        </div>
-        <div class="now-badge" id="now-badge"></div>
-        <div class="week">
-          <button
-            class="icon-btn"
-            id="week-prev"
-            aria-label="Semaine précédente"
-          ></button>
-          <div class="week-days" id="week-days"></div>
-          <button
-            class="icon-btn"
-            id="week-next"
-            aria-label="Semaine suivante"
-          ></button>
         </div>
       </header>
 
-      <!-- ===== Top 3 du jour ===== -->
-      <section class="card top3" id="top3">
-        <div class="card-head">
-          <div class="card-title">Top 3 du jour</div>
-          <div class="card-meta" id="top3-meta"></div>
+      <div class="corps">
+        <!-- ===== Colonne de gauche (à gauche sur PC, en haut sur téléphone) ===== -->
+        <div class="col-gauche">
+          <!-- ===== Top 3 du jour ===== -->
+          <section class="card top3" id="top3">
+            <div class="card-head">
+              <div class="card-title">Top 3 du jour</div>
+              <div class="card-meta" id="top3-meta"></div>
+            </div>
+            <div class="top3-list" id="top3-list"></div>
+          </section>
+
+          <!-- ===== Bouton « C'est parti ! » ===== -->
+          <button type="button" class="une-ouvrir" id="btn-une"></button>
+
+          <!-- ===== Ta semaine (sur PC) ===== -->
+          <button
+            type="button"
+            class="card semaine-carte"
+            id="semaine-carte"
+            aria-label="Voir le bilan de la semaine"
+          ></button>
         </div>
-        <div class="top3-list" id="top3-list"></div>
-      </section>
 
-      <!-- ===== Onglets ===== -->
-      <nav class="tabs">
-        <button class="tab active" data-tab="planning">Planning</button>
-        <button class="tab" data-tab="todo">À faire</button>
-        <button class="tab" data-tab="bilan">Bilan</button>
-      </nav>
+        <!-- ===== Colonne de droite ===== -->
+        <div class="col-droite">
+          <!-- ===== Écran « Une seule chose » ===== -->
+          <section class="une" id="une" hidden>
+            <div class="une-carte" id="une-carte"></div>
+          </section>
 
-      <main class="panels">
-        <!-- ===== Onglet Planning ===== -->
-        <section class="panel active" id="panel-planning">
-          <div class="section-head">
-            <div class="section-label" id="planning-label">Ta journée</div>
-            <button class="btn btn-soft" id="btn-open-form"></button>
-          </div>
+          <!-- ===== Onglets ===== -->
+          <nav class="tabs">
+            <button class="tab active" data-tab="planning">
+              <span class="t-court">Planning</span
+              ><span class="t-large">Ma journée</span>
+            </button>
+            <button class="tab" data-tab="todo">À faire</button>
+            <button class="tab" data-tab="bilan">Bilan</button>
+          </nav>
 
-          <div class="card form-card" id="planning-form" hidden>
-            <div class="section-label" id="form-title">Nouvelle tâche</div>
-            <input
-              type="text"
-              id="planning-title"
-              data-fk="planning-title"
-              placeholder="Titre (ex : Séance muscu)"
-              maxlength="80"
-            />
-            <div class="form-row">
-              <label class="field"
-                ><span>Début</span><input type="time" id="planning-time"
-              /></label>
-              <label class="field"
-                ><span>Fin</span><input type="time" id="planning-end"
-              /></label>
-            </div>
-            <select id="planning-category">
-              <option value="sport">Sport</option>
-              <option value="etudes">Études</option>
-              <option value="menage">Ménage / Maison</option>
-              <option value="admin">Admin / Vie perso</option>
-              <option value="pro">Vie pro</option>
-            </select>
-            <div class="field">
-              <span>Répéter</span>
-              <div class="days-picker" id="repeat-days"></div>
-              <span class="hint" id="repeat-hint"></span>
-            </div>
-            <textarea
-              id="planning-notes"
-              placeholder="Notes (optionnel)"
-              maxlength="400"
-            ></textarea>
-            <p class="form-error" id="planning-error"></p>
-            <div class="form-actions">
-              <button class="btn btn-ghost" id="btn-cancel-planning">
-                Annuler
-              </button>
-              <button class="btn btn-primary" id="btn-add-planning">
-                Ajouter
-              </button>
-            </div>
-          </div>
+          <main class="panels" id="panels">
+            <!-- ===== Onglet Planning ===== -->
+            <section class="panel active" id="panel-planning">
+              <div class="section-head">
+                <div class="section-label" id="planning-label">Ta journée</div>
+                <button class="btn btn-soft" id="btn-open-form"></button>
+              </div>
 
-          <div class="timeline" id="planning-list"></div>
-        </section>
+              <div class="card form-card" id="planning-form" hidden>
+                <div class="section-label" id="form-title">Nouvelle tâche</div>
+                <input
+                  type="text"
+                  id="planning-title"
+                  data-fk="planning-title"
+                  placeholder="Titre (ex : Séance muscu)"
+                  maxlength="80"
+                />
+                <div class="horaire">
+                  <button type="button" class="horaire-btn" id="btn-debut">
+                    <span>Début</span><b id="aff-debut">--:--</b>
+                  </button>
+                  <div class="horaire-milieu">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                    <span id="aff-duree"></span>
+                  </div>
+                  <button type="button" class="horaire-btn" id="btn-fin">
+                    <span>Fin</span><b id="aff-fin">--:--</b>
+                  </button>
+                </div>
+                <div class="picker" id="picker-heure" hidden></div>
+                <div class="field">
+                  <span>Durée</span>
+                  <div class="durees" id="durees"></div>
+                </div>
+                <input type="hidden" id="planning-time" />
+                <input type="hidden" id="planning-end" />
+                <select id="planning-category">
+                  <option value="sport">Sport</option>
+                  <option value="etudes">Études</option>
+                  <option value="menage">Ménage / Maison</option>
+                  <option value="admin">Admin / Vie perso</option>
+                  <option value="pro">Vie pro</option>
+                </select>
+                <div class="field">
+                  <span>Répéter</span>
+                  <div class="days-picker" id="repeat-days"></div>
+                  <span class="hint" id="repeat-hint"></span>
+                </div>
+                <textarea
+                  id="planning-notes"
+                  placeholder="Notes (optionnel)"
+                  maxlength="400"
+                ></textarea>
+                <p class="form-error" id="planning-error"></p>
+                <div class="form-actions">
+                  <button class="btn btn-ghost" id="btn-cancel-planning">
+                    Annuler
+                  </button>
+                  <button class="btn btn-primary" id="btn-add-planning">
+                    Ajouter
+                  </button>
+                </div>
+              </div>
 
-        <!-- ===== Onglet À faire ===== -->
-        <section class="panel" id="panel-todo">
-          <div class="card form-card">
-            <div class="section-label">Nouvelle tâche à faire</div>
-            <div class="form-row">
-              <input
-                type="text"
-                id="todo-input"
-                data-fk="todo-input"
-                placeholder="Ex : Faire la vaisselle"
-                maxlength="80"
-              />
-              <button class="btn btn-primary" id="btn-add-todo">Ajouter</button>
-            </div>
-          </div>
+              <div class="timeline" id="planning-list"></div>
+            </section>
 
-          <div class="progress-row">
-            <div class="progress-track">
-              <div class="progress-fill" id="progress-fill"></div>
-            </div>
-            <div class="progress-num" id="progress-num">0 / 0</div>
-          </div>
-          <div class="todo" id="todo-list"></div>
-        </section>
+            <!-- ===== Onglet À faire ===== -->
+            <section class="panel" id="panel-todo">
+              <div class="section-head titre-large">
+                <div class="section-label">À faire</div>
+              </div>
+              <div class="card form-card">
+                <div class="section-label">Nouvelle tâche à faire</div>
+                <div class="form-row">
+                  <input
+                    type="text"
+                    id="todo-input"
+                    data-fk="todo-input"
+                    placeholder="Ex : Faire la vaisselle"
+                    maxlength="80"
+                  />
+                  <button class="btn btn-primary" id="btn-add-todo">
+                    Ajouter
+                  </button>
+                </div>
+                <div id="todo-logos"></div>
+              </div>
 
-        <!-- ===== Onglet Bilan ===== -->
-        <section class="panel" id="panel-bilan">
-          <div class="card streak-card">
-            <div class="streak-num" id="streak-num">0</div>
-            <div class="streak-body">
-              <div class="streak-label" id="streak-label"></div>
-              <div class="streak-record" id="streak-record"></div>
-              <div class="streak-dots" id="streak-dots"></div>
-            </div>
-          </div>
+              <div class="progress-row">
+                <div class="progress-track">
+                  <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="progress-num" id="progress-num">0 / 0</div>
+              </div>
+              <div class="todo" id="todo-list"></div>
+            </section>
 
-          <div class="section-label" id="bilan-label">Bilan</div>
-          <div class="tiles" id="bilan-tiles"></div>
-
-          <div class="card">
-            <div class="card-head">
-              <div class="card-title">Focus sur 7 jours</div>
-              <div class="card-meta" id="bars-meta"></div>
-            </div>
-            <div class="bars" id="focus-bars"></div>
-            <div class="bar-labels" id="bar-labels"></div>
-          </div>
-
-          <div class="card journal">
-            <div class="card-head">
-              <div class="card-title">Mon retour du jour</div>
-            </div>
-            <label class="field"
-              ><span>Ce qui a bien marché</span>
-              <textarea
-                id="journal-bien"
-                placeholder="Ex : j'ai fait ma séance malgré la flemme"
-                maxlength="600"
-              ></textarea>
-            </label>
-            <label class="field"
-              ><span>Ce que je change demain</span>
-              <textarea
-                id="journal-change"
-                placeholder="Ex : poser le téléphone dans une autre pièce"
-                maxlength="600"
-              ></textarea>
-            </label>
-          </div>
-
-          <button class="btn btn-primary btn-block" id="btn-demain">
-            Préparer demain
-          </button>
-        </section>
-      </main>
+            <!-- ===== Onglet Bilan ===== -->
+            <section class="panel" id="panel-bilan">
+              <div class="bilan-tete">
+                <div class="bilan-periodes" id="bilan-periodes">
+                  <button type="button" data-p="semaine">Semaine</button>
+                  <button type="button" data-p="mois">Mois</button>
+                  <button type="button" data-p="annee">Année</button>
+                </div>
+                <div class="bilan-nav">
+                  <button
+                    type="button"
+                    class="icon-btn"
+                    id="bilan-prec"
+                    aria-label="Période précédente"
+                  ></button>
+                  <div class="bilan-titre" id="bilan-titre"></div>
+                  <button
+                    type="button"
+                    class="icon-btn"
+                    id="bilan-suiv"
+                    aria-label="Période suivante"
+                  ></button>
+                </div>
+              </div>
+              <div class="bilan-tuiles" id="bilan-tuiles"></div>
+              <div class="card bilan-carte">
+                <div class="card-head">
+                  <div class="card-title">Tâches faites</div>
+                  <div class="card-meta" id="bilan-moyenne"></div>
+                </div>
+                <div class="barres" id="bilan-barres"></div>
+              </div>
+              <div class="card bilan-carte">
+                <div class="card-head">
+                  <div class="card-title">Par catégorie</div>
+                </div>
+                <div class="cats" id="bilan-cats"></div>
+              </div>
+              <p class="hint bilan-note">
+                Ton bilan garde tout, même les tâches supprimées. Reviens en
+                arrière autant que tu veux.
+              </p>
+            </section>
+          </main>
+        </div>
+      </div>
 
       <footer class="sync-note" id="sync-note"></footer>
+      <div class="compte-bar" id="compte-bar" hidden>
+        <span id="compte-email"></span>
+        <button class="btn btn-ghost" id="btn-deconnexion">
+          Se déconnecter
+        </button>
+      </div>
     </div>
 
     <script src="script.js"></script>
