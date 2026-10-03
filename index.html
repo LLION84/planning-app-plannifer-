@@ -202,7 +202,7 @@
               <span class="t-court">Planning</span
               ><span class="t-large">Ma journée</span>
             </button>
-            <button class="tab" data-tab="todo">À faire</button>
+            <button class="tab" data-tab="todo">Tâches</button>
             <button class="tab" data-tab="bilan">Bilan</button>
           </nav>
 
@@ -215,7 +215,7 @@
               </div>
 
               <div class="card form-card" id="planning-form" hidden>
-                <div class="section-label" id="form-title">Nouvelle tâche</div>
+                <div class="section-label" id="form-title">Planifier</div>
                 <input
                   type="text"
                   id="planning-title"
@@ -283,35 +283,76 @@
               <div class="timeline" id="planning-list"></div>
             </section>
 
-            <!-- ===== Onglet À faire ===== -->
+            <!-- ===== Onglet Tâches (les petits trucs, rangés en matin / après-midi / soir) ===== -->
             <section class="panel" id="panel-todo">
-              <div class="section-head titre-large">
-                <div class="section-label">À faire</div>
+              <div class="section-head">
+                <div class="section-label">Tâches</div>
+                <div class="tete-actions">
+                  <button
+                    type="button"
+                    class="icon-btn"
+                    id="btn-moments"
+                    aria-label="Mes moments"
+                  ></button>
+                  <button type="button" class="btn btn-soft" id="btn-open-todo">
+                    + Nouvelle tâche
+                  </button>
+                </div>
               </div>
-              <div class="card form-card">
-                <div class="section-label">Nouvelle tâche à faire</div>
-                <div class="form-row">
-                  <input
-                    type="text"
-                    id="todo-input"
-                    data-fk="todo-input"
-                    placeholder="Ex : Faire la vaisselle"
-                    maxlength="80"
-                  />
-                  <button class="btn btn-primary" id="btn-add-todo">
+
+              <!-- Réglage des heures de chaque moment -->
+              <div class="card form-card" id="moments-form" hidden></div>
+
+              <!-- Nouvelle tâche -->
+              <div class="card form-card" id="todo-form" hidden>
+                <div class="section-label">Nouvelle tâche</div>
+                <input
+                  type="text"
+                  id="todo-input"
+                  data-fk="todo-input"
+                  placeholder="Ex : Acheter du pain"
+                  maxlength="80"
+                />
+                <div class="field">
+                  <span>Quand ?</span>
+                  <div class="moment-choix" id="todo-moment"></div>
+                </div>
+                <div id="todo-logos"></div>
+                <div class="form-actions">
+                  <button
+                    type="button"
+                    class="btn btn-ghost"
+                    id="btn-cancel-todo"
+                  >
+                    Annuler
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="btn-add-todo"
+                  >
                     Ajouter
                   </button>
                 </div>
-                <div id="todo-logos"></div>
               </div>
 
-              <div class="progress-row">
-                <div class="progress-track">
-                  <div class="progress-fill" id="progress-fill"></div>
-                </div>
-                <div class="progress-num" id="progress-num">0 / 0</div>
-              </div>
+              <!-- Tâches pas faites des jours d'avant -->
+              <div class="veille" id="veille" hidden></div>
+
+              <!-- Matin / Après-midi / Soir -->
+              <div
+                class="moments"
+                id="moments"
+                role="tablist"
+                aria-label="Moment de la journée"
+              ></div>
+              <div class="moment-info" id="moment-info"></div>
               <div class="todo" id="todo-list"></div>
+              <button
+                type="button"
+                class="ajout-rapide"
+                id="btn-ajout-rapide"
+              ></button>
             </section>
 
             <!-- ===== Onglet Bilan ===== -->
