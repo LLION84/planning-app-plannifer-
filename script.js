@@ -108,6 +108,13 @@
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg>',
     retour:
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>',
+    gear: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>',
+    plus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
+    matin:
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18h16"/><path d="M7 18a5 5 0 0 1 10 0"/><path d="M12 6v3M5.6 9.6l1.8 1.8M18.4 9.6l-1.8 1.8"/></svg>',
+    aprem:
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>',
+    soir: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14.5A7.5 7.5 0 0 1 9.5 5a7.5 7.5 0 1 0 9.5 9.5z"/></svg>',
     spark:
       '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.9 6.1L20 10l-6.1 1.9L12 18l-1.9-6.1L4 10l6.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>',
   };
@@ -280,6 +287,11 @@
       faitLe: d.faitLe || null,
       etapes: Array.isArray(d.etapes) ? d.etapes : [],
       icone: typeof d.icone === "string" && LOGOS[d.icone] ? d.icone : "",
+      moment:
+        d.moment === "matin" || d.moment === "aprem" || d.moment === "soir"
+          ? d.moment
+          : "",
+      abandon: !!d.abandon,
       creeLe: d.creeLe || Date.now(),
     };
   }
@@ -290,6 +302,7 @@
       focus: m.focus && typeof m.focus === "object" ? m.focus : {},
       journal: m.journal && typeof m.journal === "object" ? m.journal : {},
       faits: m.faits && typeof m.faits === "object" ? m.faits : {}, // historique : jamais effacé
+      moments: m.moments && typeof m.moments === "object" ? m.moments : {}, // heures choisies pour matin / après-midi / soir
     };
   }
   function normEtat(s) {
@@ -712,9 +725,9 @@
     const today = aujourdhui();
     return Object.values(etat.todos)
       .filter(function (d) {
+        if (d.abandon) return false;
         if (d.date === date) return true;
-        if (date === today && !d.fait && d.date < today) return true; // reportée
-        if (d.fait && d.faitLe === date && d.date < date) return true; // faite après report
+        if (d.fait && d.faitLe === date && d.date < date) return true; // faite un autre jour
         return false;
       })
       .sort(function (a, b) {
@@ -722,8 +735,94 @@
         return (a.creeLe || 0) > (b.creeLe || 0) ? 1 : -1;
       });
   }
-  function estReportee(d, date) {
-    return d.date < date;
+
+  /* ---------- Les moments de la journée (pour les tâches) ---------- */
+  const MOMENTS = [
+    { cle: "matin", nom: "Matin", ce: "ce matin", le: "le matin" },
+    {
+      cle: "aprem",
+      nom: "Après-midi",
+      ce: "cet après-midi",
+      le: "l'après-midi",
+    },
+    { cle: "soir", nom: "Soir", ce: "ce soir", le: "le soir" },
+  ];
+  const HEURES_DEFAUT = {
+    matin: { debut: "09:00", fin: "12:00" },
+    aprem: { debut: "12:00", fin: "18:00" },
+    soir: { debut: "18:00", fin: "21:00" },
+  };
+  function infoMoment(cle) {
+    return (
+      MOMENTS.find(function (m) {
+        return m.cle === cle;
+      }) || MOMENTS[0]
+    );
+  }
+  function heuresMoments() {
+    const choix = (etat.meta && etat.meta.moments) || {};
+    const res = {};
+    MOMENTS.forEach(function (m) {
+      const c = choix[m.cle] || {};
+      res[m.cle] = {
+        debut: c.debut || HEURES_DEFAUT[m.cle].debut,
+        fin: c.fin || HEURES_DEFAUT[m.cle].fin,
+      };
+    });
+    return res;
+  }
+  function texteHeures(h) {
+    const f = function (x) {
+      const p = x.split(":");
+      return Number(p[0]) + "h" + (p[1] !== "00" ? p[1] : "");
+    };
+    return f(h.debut) + " – " + f(h.fin);
+  }
+  // Le moment de maintenant (avant l'après-midi = matin, après le début du soir = soir)
+  function momentActuel() {
+    const h = heuresMoments(),
+      n = minutesMaintenant();
+    if (n < enMinutes(h.aprem.debut)) return "matin";
+    if (n < enMinutes(h.soir.debut)) return "aprem";
+    return "soir";
+  }
+  // passé / maintenant / à venir, pour le jour affiché
+  function etatMoment(cle, date) {
+    const today = aujourdhui();
+    if (date < today) return "passe";
+    if (date > today) return "futur";
+    const h = heuresMoments()[cle],
+      n = minutesMaintenant();
+    if (n >= enMinutes(h.fin)) return "passe";
+    if (n >= enMinutes(h.debut) || momentActuel() === cle) return "maintenant";
+    return "futur";
+  }
+  // Le moment d'une tâche (les anciennes tâches : selon l'heure où elles ont été créées)
+  function momentDe(d) {
+    if (d.moment) return d.moment;
+    if (typeof d.creeLe === "number" && d.creeLe > 100000) {
+      const t = new Date(d.creeLe),
+        n = t.getHours() * 60 + t.getMinutes(),
+        h = heuresMoments();
+      if (n < enMinutes(h.aprem.debut)) return "matin";
+      if (n < enMinutes(h.soir.debut)) return "aprem";
+      return "soir";
+    }
+    return "matin";
+  }
+  // Tâches pas faites des jours d'avant, en attente d'une décision
+  function tachesEnAttente() {
+    const today = aujourdhui();
+    return Object.values(etat.todos)
+      .filter(function (d) {
+        return !d.fait && !d.abandon && d.date < today;
+      })
+      .sort(function (a, b) {
+        return (
+          a.date.localeCompare(b.date) ||
+          ((a.creeLe || 0) > (b.creeLe || 0) ? 1 : -1)
+        );
+      });
   }
 
   // État horaire de chaque tâche (aujourd'hui seulement)
@@ -787,7 +886,7 @@
       genre: "todo",
       item: d,
       titre: d.texte,
-      sous: "À faire",
+      sous: infoMoment(momentDe(d)).nom,
       categorie: null,
       fait: d.fait,
     };
@@ -864,6 +963,10 @@
     iaEnCours: new Set(),
     logoNouveau: "", // logo choisi pour la prochaine tâche à faire
     logoOuvert: false, // la liste des logos est-elle ouverte ?
+    moment: null, // moment affiché dans Tâches (null = celui de maintenant)
+    todoForm: false, // formulaire « Nouvelle tâche » ouvert ?
+    momentForm: "matin", // moment choisi dans le formulaire
+    reglagesMoments: false, // réglage « Mes moments » ouvert ?
     modesEtape: {}, // genre de la prochaine étape (simple / chrono / compteur)
     bilan: { periode: "semaine", ref: aujourdhui() }, // période affichée dans le bilan
     une: false, // écran « Une seule chose » ouvert ?
@@ -1510,7 +1613,7 @@
     $("#planning-label").textContent =
       ui.jour === today ? "Ta journée" : dateLongue(ui.jour);
     $("#btn-open-form").textContent =
-      ui.edition || !$("#planning-form").hidden ? "Fermer" : "+ Nouvelle tâche";
+      ui.edition || !$("#planning-form").hidden ? "Fermer" : "+ Planifier";
 
     const box = $("#planning-list");
     box.innerHTML = "";
@@ -1523,7 +1626,7 @@
           "empty",
           ui.jour < today
             ? "Rien n'était planifié ce jour-là."
-            : "Rien de planifié. Ajoute ta première tâche avec « + Nouvelle tâche ».",
+            : "Rien de planifié. Appuie sur « + Planifier » pour commencer.",
         ),
       );
       return;
@@ -1858,7 +1961,7 @@
     const form = $("#planning-form");
     form.hidden = false;
     ui.edition = t ? t.id : null;
-    $("#form-title").textContent = t ? "Modifier la tâche" : "Nouvelle tâche";
+    $("#form-title").textContent = t ? "Modifier" : "Planifier";
     $("#btn-add-planning").textContent = t ? "Enregistrer" : "Ajouter";
     $("#planning-title").value = t ? t.titre : "";
     if (t) {
@@ -1944,8 +2047,8 @@
     enregistrerTache(t);
     notifier(
       ancien
-        ? "Tâche modifiée."
-        : "Tâche ajoutée" +
+        ? "Modification enregistrée."
+        : "C'est planifié" +
             (jours.length
               ? " (" + libelleJours(jours).toLowerCase() + ")."
               : "."),
@@ -2012,29 +2115,119 @@
     }
   }
 
+  // Le moment affiché : celui choisi, sinon celui de maintenant
+  function momentAffiche() {
+    if (ui.moment) return ui.moment;
+    return ui.jour === aujourdhui() ? momentActuel() : "matin";
+  }
+
   function rendreTodos() {
     rendreLogosForm();
-    const box = $("#todo-list");
-    box.innerHTML = "";
+    rendreFormTodo();
+    rendreReglagesMoments();
+    rendreVeille();
+    const today = aujourdhui();
     const liste = todosDu(ui.jour);
-    const faites = liste.filter(function (d) {
+    const actif = momentAffiche();
+    const heures = heuresMoments();
+
+    // Matin / Après-midi / Soir
+    const zone = $("#moments");
+    zone.innerHTML = "";
+    MOMENTS.forEach(function (m) {
+      const siens = liste.filter(function (d) {
+        return momentDe(d) === m.cle;
+      });
+      const faites = siens.filter(function (d) {
+        return d.fait;
+      }).length;
+      const b = el("button", "moment-opt" + (m.cle === actif ? " on" : ""));
+      b.type = "button";
+      b.setAttribute("role", "tab");
+      b.setAttribute("aria-selected", m.cle === actif ? "true" : "false");
+      b.setAttribute(
+        "aria-label",
+        m.nom + " : " + faites + " sur " + siens.length + " faites",
+      );
+      b.innerHTML = '<span class="moment-ico">' + ICONES[m.cle] + "</span>";
+      b.appendChild(el("b", null, m.nom));
+      const barre = el("span", "moment-barre");
+      const rempli = el("i");
+      rempli.style.width =
+        (siens.length ? Math.round((faites / siens.length) * 100) : 0) + "%";
+      barre.appendChild(rempli);
+      b.appendChild(barre);
+      if (ui.jour === today && etatMoment(m.cle, today) === "maintenant")
+        b.appendChild(el("em", "moment-now"));
+      b.onclick = function () {
+        ui.moment = m.cle;
+        rendreTodos();
+      };
+      zone.appendChild(b);
+    });
+
+    // La ligne d'info sous les moments
+    const siens = liste.filter(function (d) {
+      return momentDe(d) === actif;
+    });
+    const faites = siens.filter(function (d) {
       return d.fait;
     }).length;
-    $("#progress-fill").style.width =
-      (liste.length ? Math.round((faites / liste.length) * 100) : 0) + "%";
-    $("#progress-num").textContent = faites + " / " + liste.length;
+    const etatActif = etatMoment(actif, ui.jour);
+    const info = $("#moment-info");
+    info.innerHTML = "";
+    const gauche = el("span", null, texteHeures(heures[actif]));
+    if (ui.jour === today) {
+      gauche.appendChild(document.createTextNode(" · "));
+      gauche.appendChild(
+        el(
+          "b",
+          "moment-etat " + etatActif,
+          etatActif === "maintenant"
+            ? "maintenant"
+            : etatActif === "passe"
+              ? "passé"
+              : "à venir",
+        ),
+      );
+    }
+    info.appendChild(gauche);
+    info.appendChild(
+      el(
+        "span",
+        null,
+        siens.length ? "Faites : " + faites + " / " + siens.length : "",
+      ),
+    );
 
-    if (!liste.length) {
+    // La liste
+    const box = $("#todo-list");
+    box.innerHTML = "";
+    const m = infoMoment(actif);
+    if (!siens.length) {
       box.appendChild(
         el(
           "div",
           "empty",
-          "Rien à faire pour ce jour. Note ici les petites choses sans heure précise.",
+          "Rien de prévu " +
+            (ui.jour === today ? m.ce : m.le) +
+            ". Ajoute les petits trucs rapides à faire, sans heure précise.",
         ),
       );
-      return;
+    } else if (
+      ui.jour === today &&
+      etatActif === "passe" &&
+      faites < siens.length
+    ) {
+      box.appendChild(
+        el(
+          "p",
+          "moment-note",
+          "Ce moment est passé. Pas grave, tu peux encore les faire.",
+        ),
+      );
     }
-    liste.forEach(function (d) {
+    siens.forEach(function (d) {
       const cle = "d:" + d.id;
       const item = el("div", "todo-item" + (d.fait ? " done" : ""));
       const main = el("div", "todo-main");
@@ -2064,11 +2257,6 @@
         main.appendChild(logo);
       }
       main.appendChild(el("div", "todo-title", d.texte));
-      if (!d.fait && estReportee(d, ui.jour)) {
-        const tag = el("span", "tag", "Reportée");
-        tag.title = "Prévue le " + dateLongue(d.date);
-        main.appendChild(tag);
-      }
       main.appendChild(boutonEtoile(cle, ui.jour));
       item.appendChild(main);
       if (d.icone && ui.ouverts.has("i:" + cle)) {
@@ -2081,7 +2269,6 @@
           }),
         );
       }
-
       const actions = el("div", "t-actions");
       if (!d.fait) {
         const f = chip("play", "Focus", "accent");
@@ -2103,7 +2290,243 @@
         item.appendChild(panneauEtapes("todo", d, ui.jour));
       box.appendChild(item);
     });
+
+    // Ajout rapide dans ce moment
+    const ajout = $("#btn-ajout-rapide");
+    ajout.innerHTML = ICONES.plus;
+    ajout.appendChild(
+      el(
+        "span",
+        null,
+        "Ajouter une tâche " + (ui.jour === today ? m.ce : m.le),
+      ),
+    );
+    ajout.hidden = ui.todoForm;
   }
+
+  // ---------- Formulaire « Nouvelle tâche » ----------
+  function rendreFormTodo() {
+    $("#todo-form").hidden = !ui.todoForm;
+    $("#btn-open-todo").textContent = ui.todoForm
+      ? "Fermer"
+      : "+ Nouvelle tâche";
+    const zone = $("#todo-moment");
+    zone.innerHTML = "";
+    MOMENTS.forEach(function (m) {
+      const b = el(
+        "button",
+        "moment-chip" + (ui.momentForm === m.cle ? " on" : ""),
+      );
+      b.type = "button";
+      b.setAttribute(
+        "aria-pressed",
+        ui.momentForm === m.cle ? "true" : "false",
+      );
+      b.innerHTML = ICONES[m.cle];
+      b.appendChild(el("span", null, m.nom));
+      b.onclick = function () {
+        ui.momentForm = m.cle;
+        rendreFormTodo();
+        $("#todo-input").focus();
+      };
+      zone.appendChild(b);
+    });
+  }
+  function ouvrirFormTodo(moment) {
+    ui.todoForm = true;
+    ui.reglagesMoments = false;
+    ui.momentForm = moment || momentAffiche();
+    montrerOnglet("todo");
+    rendreTodos();
+    $("#todo-form").scrollIntoView({ behavior: "smooth", block: "nearest" });
+    setTimeout(function () {
+      $("#todo-input").focus();
+    }, 60);
+  }
+  function fermerFormTodo() {
+    ui.todoForm = false;
+    ui.logoNouveau = "";
+    ui.logoOuvert = false;
+    $("#todo-input").value = "";
+    rendreTodos();
+  }
+
+  // ---------- Réglage « Mes moments » ----------
+  function rendreReglagesMoments() {
+    const zone = $("#moments-form");
+    zone.hidden = !ui.reglagesMoments;
+    if (!ui.reglagesMoments || zone.dataset.ouvert === "1") return; // on ne redessine pas pendant qu'on écrit
+    zone.dataset.ouvert = "1";
+    zone.innerHTML = "";
+    const h = heuresMoments();
+    zone.appendChild(el("div", "section-label", "Mes moments"));
+    zone.appendChild(
+      el(
+        "p",
+        "hint",
+        "Choisis quand commence et finit chaque moment de ta journée.",
+      ),
+    );
+    MOMENTS.forEach(function (m) {
+      const ligne = el("div", "reglage-ligne");
+      const ico = el("span", "moment-ico");
+      ico.innerHTML = ICONES[m.cle];
+      ligne.appendChild(ico);
+      ligne.appendChild(el("b", null, m.nom));
+      const heures = el("span", "reglage-heures");
+      ligne.appendChild(heures);
+      ["debut", "fin"].forEach(function (k, i) {
+        if (i === 1) heures.appendChild(el("span", "reglage-fleche", "→"));
+        const input = el("input");
+        input.type = "time";
+        input.id = "moment-" + m.cle + "-" + k;
+        input.value = h[m.cle][k];
+        input.setAttribute(
+          "aria-label",
+          m.nom + (k === "debut" ? " : début" : " : fin"),
+        );
+        heures.appendChild(input);
+      });
+      zone.appendChild(ligne);
+    });
+    zone.appendChild(el("p", "form-error", ""));
+    const actions = el("div", "form-actions");
+    const defaut = el("button", "btn btn-ghost reglage-defaut", "Par défaut");
+    defaut.type = "button";
+    defaut.onclick = function () {
+      MOMENTS.forEach(function (m) {
+        $("#moment-" + m.cle + "-debut").value = HEURES_DEFAUT[m.cle].debut;
+        $("#moment-" + m.cle + "-fin").value = HEURES_DEFAUT[m.cle].fin;
+      });
+    };
+    const annuler = el("button", "btn btn-ghost", "Annuler");
+    annuler.type = "button";
+    annuler.onclick = fermerReglagesMoments;
+    const ok = el("button", "btn btn-primary", "Enregistrer");
+    ok.type = "button";
+    ok.onclick = enregistrerReglagesMoments;
+    actions.appendChild(defaut);
+    actions.appendChild(el("span", "spacer"));
+    actions.appendChild(annuler);
+    actions.appendChild(ok);
+    zone.appendChild(actions);
+  }
+  function fermerReglagesMoments() {
+    ui.reglagesMoments = false;
+    $("#moments-form").dataset.ouvert = "";
+    rendreTodos();
+  }
+  function enregistrerReglagesMoments() {
+    const valeurs = {};
+    let erreur = "";
+    MOMENTS.forEach(function (m) {
+      const d = $("#moment-" + m.cle + "-debut").value,
+        f = $("#moment-" + m.cle + "-fin").value;
+      if (!d || !f) erreur = "Remplis toutes les heures.";
+      else if (enMinutes(f) <= enMinutes(d))
+        erreur = "Chaque moment doit finir après avoir commencé.";
+      valeurs[m.cle] = { debut: d, fin: f };
+    });
+    if (
+      !erreur &&
+      !(
+        enMinutes(valeurs.matin.debut) < enMinutes(valeurs.aprem.debut) &&
+        enMinutes(valeurs.aprem.debut) < enMinutes(valeurs.soir.debut)
+      )
+    ) {
+      erreur =
+        "Les moments doivent se suivre : matin, puis après-midi, puis soir.";
+    }
+    if (erreur) {
+      $("#moments-form .form-error").textContent = erreur;
+      return;
+    }
+    ui.reglagesMoments = false;
+    $("#moments-form").dataset.ouvert = "";
+    majMeta({ moments: valeurs });
+    notifier("Tes moments sont enregistrés.");
+  }
+
+  // ---------- Message du lendemain : reporter ou laisser tomber ----------
+  function rendreVeille() {
+    const zone = $("#veille");
+    const attente = ui.jour === aujourdhui() ? tachesEnAttente() : [];
+    zone.hidden = !attente.length;
+    zone.innerHTML = "";
+    if (!attente.length) return;
+    const hier = ajouterJours(aujourdhui(), -1);
+    const toutesHier = attente.every(function (d) {
+      return d.date === hier;
+    });
+    const n = attente.length;
+    const tete = el("div", "veille-tete");
+    tete.appendChild(
+      el(
+        "b",
+        null,
+        (toutesHier ? "Hier, " : "Ces derniers jours, ") +
+          n +
+          (n > 1 ? " tâches n'ont pas été faites" : " tâche n'a pas été faite"),
+      ),
+    );
+    tete.appendChild(el("span", null, "Ce n'est pas grave. Tu choisis."));
+    zone.appendChild(tete);
+    const ul = el("ul");
+    attente.slice(0, 4).forEach(function (d) {
+      const li = el("li");
+      if (d.icone) {
+        const l = el("span", "todo-logo");
+        l.innerHTML = svgLogo(d.icone);
+        li.appendChild(l);
+      }
+      li.appendChild(el("span", "veille-titre", d.texte));
+      li.appendChild(el("small", null, infoMoment(momentDe(d)).nom));
+      ul.appendChild(li);
+    });
+    zone.appendChild(ul);
+    if (n > 4)
+      zone.appendChild(
+        el(
+          "p",
+          "hint",
+          "Et " + (n - 4) + " autre" + (n - 4 > 1 ? "s" : "") + ".",
+        ),
+      );
+    const actions = el("div", "veille-actions");
+    const reporter = el("button", "btn btn-primary", "Reporter à aujourd'hui");
+    reporter.type = "button";
+    reporter.onclick = function () {
+      deciderEnAttente(false);
+    };
+    const laisser = el("button", "btn btn-ghost", "Laisser tomber");
+    laisser.type = "button";
+    laisser.onclick = function () {
+      deciderEnAttente(true);
+    };
+    actions.appendChild(reporter);
+    actions.appendChild(laisser);
+    zone.appendChild(actions);
+  }
+  function deciderEnAttente(abandonner) {
+    const today = aujourdhui();
+    const liste = tachesEnAttente();
+    liste.forEach(function (d) {
+      const copie = cloner(d);
+      if (abandonner) copie.abandon = true;
+      else copie.date = today;
+      etat.todos[copie.id] = copie;
+      persister({ type: "todo", id: copie.id, valeur: cloner(copie) });
+    });
+    rendre();
+    notifier(
+      abandonner
+        ? "C'est noté. On repart à zéro."
+        : liste.length > 1
+          ? "Reportées à aujourd'hui."
+          : "Reportée à aujourd'hui.",
+    );
+  }
+
   function cocherTodo(d, date) {
     const copie = cloner(etat.todos[d.id] || d);
     copie.fait = !copie.fait;
@@ -2128,17 +2551,26 @@
           id: nouvelId(),
           texte: texte,
           icone: ui.logoNouveau,
+          moment: ui.momentForm,
           date: ui.jour,
           creeLe: Date.now(),
         },
         0,
       ),
     );
+    ui.moment = ui.momentForm; // on montre le moment où la tâche vient d'arriver
     ui.logoNouveau = "";
     ui.logoOuvert = false;
-    rendreLogosForm();
     input.value = "";
+    rendreTodos();
     input.focus();
+    notifier(
+      "Tâche ajoutée " +
+        (ui.jour === aujourdhui()
+          ? infoMoment(ui.momentForm).ce
+          : infoMoment(ui.momentForm).le) +
+        ".",
+    );
   }
 
   // ---------- Synchro ----------
@@ -2188,12 +2620,21 @@
         ajouter(e.genre, e.item, "Top 3", e.categorie);
       });
     futures.slice(1).forEach(ajouterTache);
-    todosDu(today)
+    const restantes = todosDu(today).filter(function (d) {
+      return !d.fait;
+    });
+    const mm = momentActuel();
+    restantes
       .filter(function (d) {
-        return !d.fait;
+        return momentDe(d) === mm;
       })
+      .concat(
+        restantes.filter(function (d) {
+          return momentDe(d) !== mm;
+        }),
+      )
       .forEach(function (d) {
-        ajouter("todo", d, "À faire", null);
+        ajouter("todo", d, "Tâche · " + infoMoment(momentDe(d)).nom, null);
       });
     return liste;
   }
@@ -2403,7 +2844,7 @@
     menage: "Ménage / Maison",
     admin: "Admin / Vie perso",
     pro: "Vie pro",
-    todo: "À faire",
+    todo: "Tâches",
   };
 
   // Ce qui a été fait un jour donné : { "t:id": catégorie, "d:id": "todo" }
@@ -3323,6 +3764,21 @@
     });
     document.body.dataset.onglet = ui.onglet;
     $("#btn-add-todo").onclick = ajouterTodo;
+    $("#btn-moments").innerHTML = ICONES.gear;
+    $("#btn-moments").onclick = function () {
+      ui.reglagesMoments = !ui.reglagesMoments;
+      if (ui.reglagesMoments) ui.todoForm = false;
+      $("#moments-form").dataset.ouvert = "";
+      rendreTodos();
+    };
+    $("#btn-open-todo").onclick = function () {
+      if (ui.todoForm) fermerFormTodo();
+      else ouvrirFormTodo();
+    };
+    $("#btn-cancel-todo").onclick = fermerFormTodo;
+    $("#btn-ajout-rapide").onclick = function () {
+      ouvrirFormTodo(momentAffiche());
+    };
     $("#todo-input").addEventListener("keydown", function (e) {
       if (e.key === "Enter") ajouterTodo();
     });
